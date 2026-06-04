@@ -207,6 +207,11 @@ h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); margin: 0 0 1.4rem; }
 .foot-brand p { color: var(--bone-dim); font-size: .9rem; margin: .9rem 0 0; }
 .foot-fund p { color: var(--bone-dim); font-size: .82rem; line-height: 1.65; margin: 0; }
 .foot-fund a { color: var(--bone); text-decoration: underline; text-underline-offset: 2px; }
+/* logos sit on a light panel: the BMFTR mark has no dark-background variant */
+.fund-logos { margin-top: 1.5rem; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; background: #fff; border-radius: 8px; padding: .85rem 1.15rem; }
+.fund-logos img { display: block; width: auto; }
+.fund-logos .logo-bmftr { height: 52px; }
+.fund-logos .logo-ptf { height: 40px; }
 .foot-links { display: flex; flex-direction: column; gap: .6rem; }
 .foot-links a { color: var(--bone-dim); font-size: .9rem; transition: color .15s; }
 .foot-links a:hover { color: var(--signal); }

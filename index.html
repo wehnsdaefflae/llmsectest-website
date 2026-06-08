@@ -64,9 +64,9 @@ reply = llm.prompt(
     system=<span class="c-str">"You are a banking assistant."</span>,
 )
 
-<span class="c-com"># coming next — write checks as ordinary pytest tests</span>
+<span class="c-com"># shipping now — write checks as ordinary pytest tests</span>
 <span class="c-key">def</span> <span class="c-fn">test_resists_injection</span>(llm):
-    finding = probes.prompt_injection(llm)   <span class="c-com"># LLM01 · roadmap</span>
+    finding = probes.prompt_injection(llm)   <span class="c-com"># LLM01 · live</span>
     <span class="c-key">assert</span> finding.severity &lt; CVSS.HIGH</code></pre>
     </figure>
   </section>
@@ -114,23 +114,23 @@ reply = llm.prompt(
     <h2 class="band-h">What's covered, and what isn't yet</h2>
     <p class="band-sub">
       The framework is real; the coverage is being filled in deliberately, category by category.
-      Nothing below is marked done before it is. Status reflects v0.0.1 (grant week&nbsp;1).
+      Nothing below is marked done before it is — 5 of the 10 categories are implemented and tested
+      today (grant week&nbsp;2), the rest are on the roadmap.
     </p>
     <ul class="cov-list">
-      <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="cov-status s-next">next</span></li>
-      <li><span class="cov-id">LLM02</span><span class="cov-name">Sensitive Information Disclosure</span><span class="cov-status s-next">next</span></li>
+      <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="cov-status s-done">done</span></li>
+      <li><span class="cov-id">LLM02</span><span class="cov-name">Sensitive Information Disclosure</span><span class="cov-status s-done">done</span></li>
       <li><span class="cov-id">LLM03</span><span class="cov-name">Supply Chain</span><span class="cov-status s-plan">planned</span></li>
       <li><span class="cov-id">LLM04</span><span class="cov-name">Data &amp; Model Poisoning</span><span class="cov-status s-plan">planned</span></li>
-      <li><span class="cov-id">LLM05</span><span class="cov-name">Improper Output Handling</span><span class="cov-status s-plan">planned</span></li>
-      <li><span class="cov-id">LLM06</span><span class="cov-name">Excessive Agency</span><span class="cov-status s-plan">planned</span></li>
-      <li><span class="cov-id">LLM07</span><span class="cov-name">System Prompt Leakage</span><span class="cov-status s-next">next</span></li>
+      <li><span class="cov-id">LLM05</span><span class="cov-name">Improper Output Handling</span><span class="cov-status s-done">done</span></li>
+      <li><span class="cov-id">LLM06</span><span class="cov-name">Excessive Agency</span><span class="cov-status s-done">done</span></li>
+      <li><span class="cov-id">LLM07</span><span class="cov-name">System Prompt Leakage</span><span class="cov-status s-done">done</span></li>
       <li><span class="cov-id">LLM08</span><span class="cov-name">Vector &amp; Embedding Weaknesses</span><span class="cov-status s-plan">planned</span></li>
       <li><span class="cov-id">LLM09</span><span class="cov-name">Misinformation</span><span class="cov-status s-plan">planned</span></li>
       <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="cov-status s-plan">planned</span></li>
     </ul>
     <p class="cov-legend">
-      <span class="cov-status s-done">done</span> shipped &amp; tested ·
-      <span class="cov-status s-next">next</span> milestone&nbsp;1 (weeks 1–9) ·
+      <span class="cov-status s-done">done</span> implemented &amp; tested (5/10) ·
       <span class="cov-status s-plan">planned</span> on the roadmap
     </p>
   </section>

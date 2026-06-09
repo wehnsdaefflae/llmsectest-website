@@ -21,6 +21,7 @@
   <nav class="nav" aria-label="Primary">
     <a href="#approach">Approach</a>
     <a href="#coverage">Coverage</a>
+    <a href="#roadmap">Roadmap</a>
     <a href="#output">Output</a>
     <a class="nav-cta" href="https://github.com/wehnsdaefflae/llmsectest">GitHub&nbsp;&nearr;</a>
   </nav>
@@ -32,7 +33,7 @@
     <div class="hero-copy">
       <p class="status" data-reveal="1">
         <span class="dot" aria-hidden="true"></span>
-        pre-alpha · v0.0.1 · in active development
+        pre-alpha · v0.1.0 · in active development
       </p>
       <h1 data-reveal="2">Security tests for LLM apps,<br>written in <em>pytest</em>.</h1>
       <p class="lede" data-reveal="3">
@@ -41,8 +42,9 @@
         emitted as SARIF so they land in CI next to everything else you gate on.
       </p>
       <p class="honest" data-reveal="4">
-        Being built in the open. <strong>v0.0.1 ships the unified model adapter today</strong>;
-        the probe library and reporting land across the funding period — tracked honestly below.
+        Being built in the open. <strong>Today it ships the framework, the unified adapter,
+        CVSS-scored SARIF/HTML/JSON reports, and 5 of the 10 OWASP categories</strong>; the rest
+        land across the funding period — tracked honestly below.
       </p>
       <div class="cta-row" data-reveal="5">
         <a class="btn btn-primary" href="https://github.com/wehnsdaefflae/llmsectest">Read the code</a>
@@ -115,7 +117,7 @@ reply = llm.prompt(
     <p class="band-sub">
       The framework is real; the coverage is being filled in deliberately, category by category.
       Nothing below is marked done before it is — 5 of the 10 categories are implemented and tested
-      today (grant week&nbsp;2), the rest are on the roadmap.
+      today, the rest are on the <a href="#roadmap">roadmap</a>.
     </p>
     <ul class="cov-list">
       <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="cov-status s-done">done</span></li>
@@ -135,7 +137,74 @@ reply = llm.prompt(
     </p>
   </section>
 
-  <section id="output" class="band">
+  <section id="roadmap" class="band">
+    <p class="eyebrow">// roadmap — shipped, building, planned</p>
+    <h2 class="band-h">Where it's going</h2>
+    <p class="band-sub">
+      Built in the open across the funding period. Each phase ships before the next is claimed —
+      the status here tracks the real state of the code, not a wish-list.
+    </p>
+    <ol class="roadmap">
+      <li class="rm-phase">
+        <div class="rm-head">
+          <span class="rm-num">01</span>
+          <h3 class="rm-title">Foundation</h3>
+          <span class="cov-status s-done">shipped</span>
+        </div>
+        <ul class="rm-items">
+          <li class="is-done">pytest-native framework &amp; plugin</li>
+          <li class="is-done">Unified adapter — OpenAI · Anthropic · Hugging&nbsp;Face · Ollama (local)</li>
+          <li class="is-done">Reports — SARIF&nbsp;v2.1.0 · HTML · JSON · Markdown</li>
+          <li class="is-done">CVSS&nbsp;v4.0 scoring with OWASP mapping</li>
+          <li class="is-done">CLI &amp; documentation site</li>
+        </ul>
+      </li>
+      <li class="rm-phase">
+        <div class="rm-head">
+          <span class="rm-num">02</span>
+          <h3 class="rm-title">OWASP coverage</h3>
+          <span class="cov-status s-next">in progress</span>
+        </div>
+        <ul class="rm-items">
+          <li class="is-done">5 of 10 categories live — LLM01, LLM02, LLM05, LLM06, LLM07</li>
+          <li class="is-done">Black-box application testing — <code>--target app:&lt;url&gt;</code></li>
+          <li>Remaining categories — LLM03, LLM04, LLM08, LLM09, LLM10</li>
+          <li>Curated red-team prompt set · LMStudio adapter</li>
+        </ul>
+      </li>
+      <li class="rm-phase">
+        <div class="rm-head">
+          <span class="rm-num">03</span>
+          <h3 class="rm-title">Depth &amp; reports</h3>
+          <span class="cov-status s-plan">planned</span>
+        </div>
+        <ul class="rm-items">
+          <li>Supply-chain &amp; SBOM / dependency scanning</li>
+          <li>Embedding-inversion &amp; stress tests</li>
+          <li>PDF reports · remediation database · plugin API</li>
+        </ul>
+      </li>
+      <li class="rm-phase">
+        <div class="rm-head">
+          <span class="rm-num">04</span>
+          <h3 class="rm-title">Integrations &amp; v1.0</h3>
+          <span class="cov-status s-plan">planned</span>
+        </div>
+        <ul class="rm-items">
+          <li>CI/CD templates — GitHub Actions · GitLab CI · Jenkins</li>
+          <li>Hardening &amp; independent security audit</li>
+          <li>v1.0 on PyPI · OWASP community submission</li>
+        </ul>
+      </li>
+    </ol>
+    <p class="cov-legend">
+      <span class="cov-status s-done">shipped</span> in the code today ·
+      <span class="cov-status s-next">in progress</span> being built now ·
+      <span class="cov-status s-plan">planned</span> ahead
+    </p>
+  </section>
+
+  <section id="output" class="band band-alt">
     <p class="eyebrow">// output — the target format</p>
     <div class="output-grid">
       <div class="output-copy">

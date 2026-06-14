@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,8 +16,14 @@
 
 <header class="site-head">
   <div class="head-inner">
-    <a class="wordmark" href="/" aria-label="LLMSecTest home">
-      <span class="glyph">&gt;_</span>llmsectest<span class="tld">.dev</span>
+    <a class="logo" href="/" aria-label="LLMSecTest home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <g fill="none" stroke="#ffcc00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 11l5 5-5 5"/>
+        </g>
+        <rect x="16" y="20.4" width="8" height="2.6" rx="1.3" fill="#ffcc00"/>
+      </svg>
+      llmsectest
     </a>
     <nav class="nav" aria-label="Primary">
       <a class="hideable" href="#approach">Approach</a>
@@ -25,7 +31,7 @@
       <a class="hideable" href="#roadmap">Roadmap</a>
       <a href="https://docs.llmsec.dev">Docs</a>
       <span class="ver">v0.1.0</span>
-      <a class="gh" href="https://github.com/wehnsdaefflae/llmsectest">GitHub&nbsp;&nearr;</a>
+      <a class="gh" href="https://github.com/wehnsdaefflae/llmsectest">GitHub</a>
     </nav>
   </div>
 </header>
@@ -33,84 +39,56 @@
 <main id="main">
 
   <section class="hero">
-    <p class="pill"><span class="dot" aria-hidden="true"></span> pre-alpha · grant week 2 · built in the open</p>
-    <h1>Security tests for LLM apps, written in <span class="pt">pytest</span>.</h1>
-    <p class="lede">
-      LLMSecTest brings the <strong>OWASP LLM Top&nbsp;10</strong> into the test suite you
-      already run — one adapter for every provider, findings scored with CVSS, reports
-      emitted as SARIF so they land in CI next to everything else you gate on.
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#quickstart">Get started</a>
-      <a class="btn btn-ghost" href="https://github.com/wehnsdaefflae/llmsectest">Read the code&nbsp;&nearr;</a>
-    </div>
-  </section>
-
-  <!-- the signature numbered quickstart box -->
-  <section id="quickstart" class="quickstart">
     <div class="wrap">
-      <div class="qs-head">
-        <h2>Get a scan running in four steps.</h2>
-        <p>It's just pytest — no new harness, no separate dashboard to learn.</p>
-      </div>
-      <ol class="qs-steps">
-        <li class="qs-step">
-          <span class="qs-num">1</span>
-          <div class="qs-body">
-            <h3>Install it (from source, while it's pre-alpha)</h3>
-            <pre class="qs-cmd"><code><span class="p">~$</span> pip install <span class="c-str">"git+https://github.com/wehnsdaefflae/llmsectest"</span></code></pre>
-          </div>
-        </li>
-        <li class="qs-step">
-          <span class="qs-num">2</span>
-          <div class="qs-body">
-            <h3>Write a check as an ordinary pytest test</h3>
-            <pre class="qs-cmd"><code><span class="c-key">def</span> <span class="c-fn">test_resists_injection</span>(llm):
-    finding = probes.prompt_injection(llm)   <span class="c-com"># LLM01</span>
-    <span class="c-key">assert</span> finding.severity &lt; CVSS.HIGH</code></pre>
-          </div>
-        </li>
-        <li class="qs-step">
-          <span class="qs-num">3</span>
-          <div class="qs-body">
-            <h3>Or point the CLI at a model — or your running app</h3>
-            <pre class="qs-cmd"><code><span class="p">~$</span> llmsectest --target anthropic:claude-3-5-haiku
-<span class="p">~$</span> llmsectest --target app:http://localhost:8000/chat  <span class="c-com"># black-box</span></code></pre>
-          </div>
-        </li>
-        <li class="qs-step">
-          <span class="qs-num">4</span>
-          <div class="qs-body">
-            <h3>Read the SARIF — in CI, next to your other checks</h3>
-            <pre class="qs-cmd"><code><span class="p">~$</span> llmsectest --target app:http://localhost:8000/chat \
-      --report-formats=<span class="c-str">sarif,html,json,markdown</span></code></pre>
-          </div>
-        </li>
-      </ol>
-      <p class="qs-foot">
-        Full walkthrough — adapters, testing your live app, the coverage map — in the
-        <a href="https://docs.llmsec.dev">documentation</a>.
+      <p class="tagline">Security tests for LLM apps, written in pytest.</p>
+      <p class="lede">
+        The <strong>OWASP LLM Top&nbsp;10</strong> as ordinary pytest tests — one adapter for every
+        provider, findings scored with CVSS, reports emitted as SARIF for CI. Open-source and
+        MIT-licensed; pre-alpha, and built in the open.
       </p>
     </div>
   </section>
 
-  <!-- three-column triptych -->
   <section id="approach" class="features">
     <div class="wrap feat-grid">
       <div class="feat">
-        <h3>Just pytest</h3>
-        <p>No separate scanner off to the side. Security checks are <em>pytest tests</em> — same
-        command, same build gate, same plumbing as your unit tests.</p>
+        <h2>Just pytest</h2>
+        <p>No scanner off to the side. Security checks are pytest tests — same command, same build
+        gate, same plumbing as your unit tests.</p>
+        <a class="more" href="https://docs.llmsec.dev">How it works&nbsp;&raquo;</a>
       </div>
       <div class="feat">
-        <h3>Mapped &amp; scored</h3>
-        <p>Every probe is tied to an <em>OWASP LLM Top&nbsp;10</em> category and carries a CVSS&nbsp;v4.0
-        base score, so a finding is triageable instead of a wall of text.</p>
+        <h2>Mapped &amp; scored</h2>
+        <p>Every probe is tied to an OWASP LLM Top&nbsp;10 category and carries a CVSS&nbsp;v4.0 base
+        score, so a finding is triageable, not a wall of text.</p>
+        <a class="more" href="#coverage">The coverage map&nbsp;&raquo;</a>
       </div>
       <div class="feat">
-        <h3>CI-native</h3>
-        <p>Reports emit as <em>SARIF v2.1.0</em> (plus HTML, JSON, Markdown) — the format
-        code-scanning dashboards already read, so there's no bespoke glue to wire in.</p>
+        <h2>CI-native</h2>
+        <p>Reports emit as SARIF v2.1.0 — plus HTML, JSON and Markdown — the format code-scanning
+        dashboards already read. No bespoke glue.</p>
+        <a class="more" href="#output">A sample finding&nbsp;&raquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- maroon quick-start band, in the jekyll idiom -->
+  <section class="quickstart">
+    <div class="wrap">
+      <div class="qs-intro">
+        <p class="label">Quick-start</p>
+        <h2>Get a scan running in seconds.</h2>
+        <p>Install from source while it's pre-alpha, point it at a model or your running app, and
+        read the SARIF. Full walkthrough in the <a href="https://docs.llmsec.dev">docs</a>.</p>
+      </div>
+      <div class="terminal" aria-label="Quick-start commands">
+        <div class="term-bar"><i></i><i></i><i></i><span>bash</span></div>
+        <pre class="term-body"><code><span class="p">~ $</span> pip install <span class="com">"git+https://github.com/wehnsdaefflae/llmsectest"</span>
+<span class="p">~ $</span> llmsectest --target anthropic:claude-3-5-haiku
+<span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat   <span class="com"># your live app</span>
+<span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat \
+      --report-formats=sarif,html,json,markdown
+<span class="out"># => 6 OWASP categories run · findings written to results/&lt;target&gt;.sarif</span></code></pre>
       </div>
     </div>
   </section>
@@ -120,10 +98,10 @@
       <p class="eyebrow">OWASP LLM Top 10 — honest status</p>
       <h2>What's covered, and what isn't yet</h2>
       <p class="sub">
-        The framework is real; the coverage is being filled in deliberately, category by category.
-        Nothing below is marked done before it is — 6 of the 10 categories are implemented and
-        tested today, the rest are on the <a href="#roadmap">roadmap</a>. Every run reports the
-        not-yet-implemented categories as explicit skips, never a silent gap.
+        The framework is real; coverage is being filled in deliberately, category by category.
+        Nothing is marked done before it is — 6 of the 10 are implemented and tested today, the rest
+        are on the <a href="#roadmap">roadmap</a>. Every run reports the not-yet-implemented
+        categories as explicit skips, never a silent gap.
       </p>
       <ul class="cov">
         <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="tag t-done">done</span></li>
@@ -155,9 +133,7 @@
       <ol class="roadmap">
         <li class="phase">
           <div class="phase-head">
-            <span class="phase-num">01</span>
-            <h3>Foundation</h3>
-            <span class="tag t-done">shipped</span>
+            <span class="phase-num">01</span><h3>Foundation</h3><span class="tag t-done">shipped</span>
           </div>
           <ul>
             <li class="done">pytest-native framework &amp; plugin</li>
@@ -169,9 +145,7 @@
         </li>
         <li class="phase">
           <div class="phase-head">
-            <span class="phase-num">02</span>
-            <h3>OWASP coverage</h3>
-            <span class="tag t-next">in progress</span>
+            <span class="phase-num">02</span><h3>OWASP coverage</h3><span class="tag t-next">in progress</span>
           </div>
           <ul>
             <li class="done">6 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07</li>
@@ -184,9 +158,7 @@
         </li>
         <li class="phase">
           <div class="phase-head">
-            <span class="phase-num">03</span>
-            <h3>Depth &amp; reports</h3>
-            <span class="tag t-plan">planned</span>
+            <span class="phase-num">03</span><h3>Depth &amp; reports</h3><span class="tag t-plan">planned</span>
           </div>
           <ul>
             <li>SBOM generation &amp; deeper supply-chain analysis</li>
@@ -196,9 +168,7 @@
         </li>
         <li class="phase">
           <div class="phase-head">
-            <span class="phase-num">04</span>
-            <h3>Integrations &amp; v1.0</h3>
-            <span class="tag t-plan">planned</span>
+            <span class="phase-num">04</span><h3>Integrations &amp; v1.0</h3><span class="tag t-plan">planned</span>
           </div>
           <ul>
             <li>CI/CD templates — GitHub Actions · GitLab CI · Jenkins</li>
@@ -215,39 +185,42 @@
     </div>
   </section>
 
-  <section class="section">
+  <section id="output" class="section">
     <div class="wrap output-grid">
       <div>
         <p class="eyebrow">Output — the target format</p>
         <h2>Findings you can act on</h2>
         <p>
-          A run produces SARIF that drops straight into GitHub code scanning, GitLab, or any
-          SARIF viewer — each finding carrying its OWASP category, CVSS vector, and a remediation
-          pointer. The snippet is the <em>shape</em> of the output the framework targets.
+          A run produces SARIF that drops straight into GitHub code scanning, GitLab, or any SARIF
+          viewer — each finding carrying its OWASP category, CVSS vector and a remediation pointer.
+          The snippet is the shape of the output the framework targets.
         </p>
         <p class="micro">Illustrative — format target, not a recorded scan result.</p>
       </div>
-      <pre class="code-panel" aria-label="Example SARIF finding (illustrative)"><code>{
-  <span class="c-str">"ruleId"</span>: <span class="c-str">"LLM01-prompt-injection"</span>,
-  <span class="c-str">"level"</span>: <span class="c-str">"error"</span>,
-  <span class="c-str">"properties"</span>: {
-    <span class="c-str">"owasp"</span>: <span class="c-str">"LLM01:2025 Prompt Injection"</span>,
-    <span class="c-str">"cvss"</span>:  <span class="c-str">"CVSS:4.0/AV:N/AC:L/.../VC:H"</span>,
-    <span class="c-str">"score"</span>: <span class="c-num">8.2</span>
+      <div class="terminal code-panel" aria-label="Example SARIF finding (illustrative)">
+        <div class="term-bar"><i></i><i></i><i></i><span>report.sarif</span></div>
+        <pre class="term-body"><code>{
+  <span class="str">"ruleId"</span>: <span class="str">"LLM01-prompt-injection"</span>,
+  <span class="str">"level"</span>: <span class="str">"error"</span>,
+  <span class="str">"properties"</span>: {
+    <span class="str">"owasp"</span>: <span class="str">"LLM01:2025 Prompt Injection"</span>,
+    <span class="str">"cvss"</span>:  <span class="str">"CVSS:4.0/AV:N/AC:L/.../VC:H"</span>,
+    <span class="str">"score"</span>: <span class="num">8.2</span>
   },
-  <span class="c-str">"message"</span>: {
-    <span class="c-str">"text"</span>: <span class="c-str">"System prompt recovered via instruction override."</span>
+  <span class="str">"message"</span>: {
+    <span class="str">"text"</span>: <span class="str">"System prompt recovered via instruction override."</span>
   }
 }</code></pre>
+      </div>
     </div>
   </section>
 
   <section class="cta-band">
     <div class="wrap">
       <h2>Built in the open, for the people shipping LLM features.</h2>
-      <p>App developers, security leads, and researchers — the repo is public and the roadmap is
+      <p>App developers, security leads and researchers — the repo is public and the roadmap is
          honest. Watch it, try the adapter, or open an issue.</p>
-      <a class="btn btn-primary" href="https://github.com/wehnsdaefflae/llmsectest">github.com/wehnsdaefflae/llmsectest&nbsp;&nearr;</a>
+      <a class="gobtn" href="https://github.com/wehnsdaefflae/llmsectest">github.com/wehnsdaefflae/llmsectest&nbsp;&raquo;</a>
     </div>
   </section>
 
@@ -256,7 +229,13 @@
 <footer class="site-foot">
   <div class="foot-grid">
     <div class="foot-brand">
-      <span class="wordmark"><span class="glyph">&gt;_</span>llmsectest</span>
+      <span class="logo">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <g fill="none" stroke="#ffcc00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 11l5 5-5 5"/></g>
+          <rect x="16" y="20.4" width="8" height="2.6" rx="1.3" fill="#ffcc00"/>
+        </svg>
+        llmsectest
+      </span>
       <p>An open-source security testing framework for LLM applications. MIT-licensed.</p>
     </div>
     <div class="foot-fund">

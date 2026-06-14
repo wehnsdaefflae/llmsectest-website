@@ -70,7 +70,7 @@ code, kbd { font-family: var(--mono); }
   padding: .85rem var(--gutter);
 }
 .logo { display: inline-flex; align-items: center; gap: .5ch; font-weight: 700; font-size: 1.7rem; color: var(--gold); line-height: 1; }
-.logo .mark { width: 1.05em; height: 1.05em; }
+.logo .mark { width: 1.15em; height: 1.15em; border-radius: .28em; }
 .logo:hover { color: var(--gold); }
 
 .nav { display: flex; align-items: center; gap: 1.5rem; margin-left: auto; font-size: .78rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }

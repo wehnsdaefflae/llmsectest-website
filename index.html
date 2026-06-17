@@ -98,7 +98,7 @@
       <h2>What's covered, and what isn't yet</h2>
       <p class="sub">
         The framework is real; coverage is being filled in deliberately, category by category.
-        Nothing is marked done before it is — 6 of the 10 are implemented and tested today, the rest
+        Nothing is marked done before it is — 7 of the 10 are implemented and tested today, the rest
         are on the <a href="#roadmap">roadmap</a>. Every run reports the not-yet-implemented
         categories as explicit skips, never a silent gap.
       </p>
@@ -112,10 +112,10 @@
         <li><span class="cov-id">LLM07</span><span class="cov-name">System Prompt Leakage</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM08</span><span class="cov-name">Vector &amp; Embedding Weaknesses</span><span class="tag t-plan">planned</span></li>
         <li><span class="cov-id">LLM09</span><span class="cov-name">Misinformation</span><span class="tag t-plan">planned</span></li>
-        <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="tag t-plan">planned</span></li>
+        <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="tag t-done">done</span></li>
       </ul>
       <p class="legend">
-        <span class="tag t-done">done</span> implemented &amp; tested (6/10) ·
+        <span class="tag t-done">done</span> implemented &amp; tested (7/10) ·
         <span class="tag t-plan">planned</span> on the roadmap
       </p>
     </div>
@@ -147,13 +147,13 @@
             <span class="phase-num">02</span><h3>OWASP coverage</h3><span class="tag t-next">in progress</span>
           </div>
           <ul>
-            <li class="done">6 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07</li>
-            <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 5 categories with <code>--app-prompt/-secret/-action</code></li>
+            <li class="done">7 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07, LLM10</li>
+            <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 6 categories with <code>--app-prompt/-secret/-action</code></li>
             <li class="done">Supply-chain dependency scan — <code>--repo &lt;path&gt;</code> (LLM03)</li>
             <li class="done">Known-CVE lookup for pinned dependencies — <code>--osv</code> (OSV.dev)</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench) — <code>--redteam-set &lt;csv&gt;</code> (LLM01)</li>
             <li class="done">Over-refusal (false-refusal-rate) metric via the benign twins — <code>--redteam-benign</code></li>
-            <li>Remaining categories — LLM04, LLM08, LLM09, LLM10</li>
+            <li>Remaining categories — LLM04, LLM08, LLM09</li>
             <li>Classifier refusal oracle (Llama-Guard / GLiGuard) · LMStudio adapter</li>
           </ul>
         </li>

@@ -148,13 +148,13 @@
           </div>
           <ul>
             <li class="done">8 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07, LLM08, LLM10</li>
-            <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 7 categories with <code>--app-prompt/-secret/-action/-canary</code></li>
+            <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 7 categories with <code>--app-prompt/-secret/-action/-canary/-rag-poison</code></li>
             <li class="done">Supply-chain dependency scan — <code>--repo &lt;path&gt;</code> (LLM03)</li>
             <li class="done">Known-CVE lookup for pinned dependencies — <code>--osv</code> (OSV.dev)</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench) — <code>--redteam-set &lt;csv&gt;</code> (LLM01)</li>
             <li class="done">Over-refusal (false-refusal-rate) metric via the benign twins — <code>--redteam-benign</code></li>
             <li class="done">Standalone HTML reports from any SARIF file — <code>--render-sarif &lt;file.sarif&gt;</code></li>
-            <li class="done">Vector &amp; embedding weaknesses — black-box retrieval exposure for RAG apps via <code>--app-canary</code> (LLM08)</li>
+            <li class="done">Vector &amp; embedding weaknesses — black-box RAG retrieval exposure (<code>--app-canary</code>) and indirect prompt injection via a poisoned retrieved document (<code>--app-rag-poison</code>) (LLM08)</li>
             <li>Remaining categories — LLM04, LLM09</li>
             <li>Classifier refusal oracle (Llama-Guard / GLiGuard)</li>
           </ul>

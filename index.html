@@ -87,7 +87,7 @@
 <span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat   <span class="com"># your live app</span>
 <span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat \
       --report-formats=sarif,html,json,markdown
-<span class="out"># => 6 OWASP categories run · findings written to results/&lt;target&gt;.sarif</span></code></pre>
+<span class="out"># => OWASP LLM Top 10 categories probed · findings written to results/&lt;target&gt;.sarif</span></code></pre>
       </div>
     </div>
   </section>
@@ -98,7 +98,7 @@
       <h2>What's covered, and what isn't yet</h2>
       <p class="sub">
         The framework is real; coverage is being filled in deliberately, category by category.
-        Nothing is marked done before it is — 8 of the 10 are implemented and tested today, the rest
+        Nothing is marked done before it is — 9 of the 10 are implemented and tested today, the rest
         are on the <a href="#roadmap">roadmap</a>. Every run reports the not-yet-implemented
         categories as explicit skips, never a silent gap.
       </p>
@@ -111,11 +111,11 @@
         <li><span class="cov-id">LLM06</span><span class="cov-name">Excessive Agency</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM07</span><span class="cov-name">System Prompt Leakage</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM08</span><span class="cov-name">Vector &amp; Embedding Weaknesses</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM09</span><span class="cov-name">Misinformation</span><span class="tag t-plan">planned</span></li>
+        <li><span class="cov-id">LLM09</span><span class="cov-name">Misinformation</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="tag t-done">done</span></li>
       </ul>
       <p class="legend">
-        <span class="tag t-done">done</span> implemented &amp; tested (8/10) ·
+        <span class="tag t-done">done</span> implemented &amp; tested (9/10) ·
         <span class="tag t-plan">planned</span> on the roadmap
       </p>
     </div>
@@ -147,7 +147,7 @@
             <span class="phase-num">02</span><h3>OWASP coverage</h3><span class="tag t-next">in progress</span>
           </div>
           <ul>
-            <li class="done">8 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07, LLM08, LLM10</li>
+            <li class="done">9 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07, LLM08, LLM09, LLM10</li>
             <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 7 categories with <code>--app-prompt/-secret/-action/-canary/-rag-poison</code></li>
             <li class="done">Supply-chain dependency scan — <code>--repo &lt;path&gt;</code> (LLM03)</li>
             <li class="done">Known-CVE lookup for pinned dependencies — <code>--osv</code> (OSV.dev)</li>
@@ -155,7 +155,8 @@
             <li class="done">Over-refusal (false-refusal-rate) metric via the benign twins — <code>--redteam-benign</code></li>
             <li class="done">Standalone HTML reports from any SARIF file — <code>--render-sarif &lt;file.sarif&gt;</code></li>
             <li class="done">Vector &amp; embedding weaknesses — black-box RAG retrieval exposure (<code>--app-canary</code>) and indirect prompt injection via a poisoned retrieved document (<code>--app-rag-poison</code>) (LLM08)</li>
-            <li>Remaining categories — LLM04, LLM09</li>
+            <li class="done">Misinformation — black-box confabulation probes on guaranteed-nonexistent entities, scored by a non-circular disclaimer oracle (LLM09)</li>
+            <li>Remaining category — LLM04</li>
             <li>Classifier refusal oracle (Llama-Guard / GLiGuard)</li>
           </ul>
         </li>

@@ -97,16 +97,17 @@
       <p class="eyebrow">OWASP LLM Top 10 — honest status</p>
       <h2>What's covered, and what isn't yet</h2>
       <p class="sub">
-        The framework is real; coverage is being filled in deliberately, category by category.
-        Nothing is marked done before it is — 9 of the 10 are implemented and tested today, the rest
-        are on the <a href="#roadmap">roadmap</a>. Every run reports the not-yet-implemented
-        categories as explicit skips, never a silent gap.
+        The framework is real; coverage was filled in deliberately, category by category.
+        Nothing was marked done before it was — all 10 of the OWASP LLM Top&nbsp;10 (2025) categories are
+        implemented and tested today. What remains is <a href="#roadmap">depth</a>, not breadth. Every run
+        reports any category it couldn't reach (a missing repo, model path or app marker) as an explicit
+        skip, never a silent gap.
       </p>
       <ul class="cov">
         <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM02</span><span class="cov-name">Sensitive Information Disclosure</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM03</span><span class="cov-name">Supply Chain</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM04</span><span class="cov-name">Data &amp; Model Poisoning</span><span class="tag t-plan">planned</span></li>
+        <li><span class="cov-id">LLM04</span><span class="cov-name">Data &amp; Model Poisoning</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM05</span><span class="cov-name">Improper Output Handling</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM06</span><span class="cov-name">Excessive Agency</span><span class="tag t-done">done</span></li>
         <li><span class="cov-id">LLM07</span><span class="cov-name">System Prompt Leakage</span><span class="tag t-done">done</span></li>
@@ -115,8 +116,8 @@
         <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="tag t-done">done</span></li>
       </ul>
       <p class="legend">
-        <span class="tag t-done">done</span> implemented &amp; tested (9/10) ·
-        <span class="tag t-plan">planned</span> on the roadmap
+        <span class="tag t-done">done</span> implemented &amp; tested — <strong>10/10</strong> ·
+        depth improvements continue on the <a href="#roadmap">roadmap</a>
       </p>
     </div>
   </section>
@@ -147,17 +148,18 @@
             <span class="phase-num">02</span><h3>OWASP coverage</h3><span class="tag t-next">in progress</span>
           </div>
           <ul>
-            <li class="done">9 of 10 categories live — LLM01, LLM02, LLM03, LLM05, LLM06, LLM07, LLM08, LLM09, LLM10</li>
+            <li class="done">All 10 of 10 categories live — LLM01–LLM10 (complete OWASP LLM Top&nbsp;10 2025 coverage)</li>
             <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 7 categories with <code>--app-prompt/-secret/-action/-canary/-rag-poison</code></li>
             <li class="done">Supply-chain dependency scan — <code>--repo &lt;path&gt;</code> (LLM03)</li>
+            <li class="done">Data &amp; model poisoning — offline serialization-opcode scan of model files for load-time code execution — <code>--model-scan &lt;path&gt;</code> (LLM04)</li>
             <li class="done">Known-CVE lookup for pinned dependencies — <code>--osv</code> (OSV.dev)</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench) — <code>--redteam-set &lt;csv&gt;</code> (LLM01)</li>
             <li class="done">Over-refusal (false-refusal-rate) metric via the benign twins — <code>--redteam-benign</code></li>
             <li class="done">Standalone HTML reports from any SARIF file — <code>--render-sarif &lt;file.sarif&gt;</code></li>
             <li class="done">Vector &amp; embedding weaknesses — black-box RAG retrieval exposure (<code>--app-canary</code>) and indirect prompt injection via a poisoned retrieved document (<code>--app-rag-poison</code>) (LLM08)</li>
             <li class="done">Misinformation — black-box confabulation probes on guaranteed-nonexistent entities, scored by a non-circular disclaimer oracle (LLM09)</li>
-            <li>Remaining category — LLM04</li>
-            <li>Classifier refusal oracle (Llama-Guard / GLiGuard)</li>
+            <li class="done">Data &amp; model poisoning — white-box model-file scanner completing all 10 categories (LLM04)</li>
+            <li>Depth, not breadth — LLM08 white-box dimensions, a classifier refusal oracle (Llama-Guard / GLiGuard)</li>
           </ul>
         </li>
         <li class="phase">

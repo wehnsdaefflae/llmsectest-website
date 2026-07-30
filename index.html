@@ -163,7 +163,8 @@
             <li class="done">Standalone HTML reports from any SARIF file — <code>--render-sarif &lt;file.sarif&gt;</code></li>
             <li class="done">Vector &amp; embedding weaknesses — black-box RAG retrieval exposure (<code>--app-canary</code>) and indirect prompt injection via a poisoned retrieved document (<code>--app-rag-poison</code>) (LLM08)</li>
             <li class="done">Misinformation — black-box confabulation probes on guaranteed-nonexistent entities, scored by a non-circular disclaimer oracle (LLM09)</li>
-            <li class="done">An app that never answers a <em>bounded</em> request is the finding — a probe that exhausts <code>--app-timeout</code> on an app that answered its other probes comfortably is scored as unbounded consumption, not written off as unmeasured (LLM10)</li>
+            <li class="done">An app that never answers a <em>bounded</em> request is the finding: a probe that exhausts <code>--app-timeout</code> on an app that answered its other probes comfortably is scored as unbounded consumption, and the finding reports how many bytes the app streamed without ever terminating (LLM10)</li>
+            <li class="done">The per-request budget is a real wall-clock deadline, so an app that keeps trickling output is cut off just like one that stalls (a plain socket timeout never trips on a streaming endpoint, which is the target that matters most here)</li>
             <li>Depth, not breadth — LLM08 white-box dimensions, a classifier refusal oracle (Llama-Guard / GLiGuard)</li>
           </ul>
         </li>

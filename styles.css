@@ -153,6 +153,8 @@ code, kbd { font-family: var(--mono); }
 .phase li.done { color: var(--text); }
 .phase li.done::before { content: "\2713"; color: var(--ok); }
 .phase li code { font-size: .82em; color: var(--gold); }
+.phase-note { color: var(--dim); font-size: .88rem; margin: .7rem 0 0; padding-left: 1.6rem; max-width: 68ch; }
+.phase-note a { color: var(--gold); }
 
 /* ───────────── output / SARIF ───────────── */
 .output-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }

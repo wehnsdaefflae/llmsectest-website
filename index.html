@@ -156,7 +156,7 @@
             <li class="done">All 10 of 10 categories live — LLM01–LLM10 (complete OWASP LLM Top&nbsp;10 2025 coverage)</li>
             <li class="done">Black-box application testing — <code>--target app:&lt;url&gt;</code>, up to 8 categories with <code>--app-prompt/-secret/-action/-canary/-rag-poison</code> (LLM01/05/09/10 always-on)</li>
             <li class="done">White-box scans — dependency manifests with an OSV known-CVE lookup (<code>--repo</code>, <code>--osv</code>, LLM03) and an offline serialization-opcode scan of model files (<code>--model-scan</code>, LLM04)</li>
-            <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) and an over-refusal false-refusal-rate metric on the benign twins (<code>--redteam-benign</code>)</li>
+            <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) and an over-refusal false-refusal-rate metric on the benign twins (<code>--redteam-benign</code>) — and a target that refuses <em>by quoting</em> the demand is scored as having refused it, not as having complied</li>
             <li class="done">RAG-specific LLM08 — retrieval exposure (<code>--app-canary</code>) and indirect prompt injection via a poisoned retrieved document (<code>--app-rag-poison</code>)</li>
             <li class="done">Misinformation — confabulation probes on guaranteed-nonexistent entities, scored by a non-circular disclaimer oracle (LLM09)</li>
             <li class="done">A clean run reports what the target <em>withstood</em>, per category, so a scan of a well-defended app does not read like a scan that attacked nothing</li>

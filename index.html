@@ -161,6 +161,7 @@
             <li class="done">Misinformation — confabulation probes on guaranteed-nonexistent entities, scored by a non-circular disclaimer oracle (LLM09)</li>
             <li class="done">A clean run reports what the target <em>withstood</em>, per category, so a scan of a well-defended app does not read like a scan that attacked nothing</li>
             <li class="done">Runaway targets are handled honestly — <code>--app-timeout</code> is a real wall-clock deadline (so a trickling app is cut off like a stalled one), a probe that exhausts it is recorded as inconclusive rather than a silent pass, and on a <em>bounded</em> LLM10 request exhausting it is itself the finding</li>
+            <li class="done">An app the scan cannot reach is never reported as a vulnerable one — a dead endpoint, a non-JSON reply or a server that dies mid-scan makes those probes inconclusive, and the run exits non-zero so an empty findings list from a scan that reached nothing cannot pass CI as a clean result</li>
             <li class="done">Standalone HTML from any SARIF file (<code>--render-sarif</code>), proven against committed output from three real scanners (ruff, Bandit, Semgrep)</li>
             <li>Depth, not breadth — LLM08 white-box dimensions, a classifier refusal oracle (Llama-Guard / GLiGuard)</li>
           </ul>

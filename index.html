@@ -41,10 +41,16 @@
     <div class="wrap">
       <p class="tagline">Security tests for LLM apps, written in pytest.</p>
       <p class="lede">
-        The <strong>OWASP LLM Top&nbsp;10</strong> as ordinary pytest tests — one adapter for every
-        provider, findings scored with CVSS, reports emitted as SARIF for CI. Open-source and
+        Putting a language model in your app adds failure modes your test suite cannot see: it will
+        follow an instruction hidden in a document it retrieved, repeat a key it was told to keep, or act
+        on an authorisation the caller simply typed. LLMSecTest attacks your running app for all ten
+        <strong>OWASP LLM Top&nbsp;10</strong> categories and tells you what it got out. Open-source and
         MIT-licensed; pre-alpha, and built in the open.
       </p>
+      <div class="hero-cta">
+        <code>pip install "git+https://github.com/wehnsdaefflae/llmsectest"</code>
+        <a class="btn" href="#quickstart">Run your first scan&nbsp;&raquo;</a>
+      </div>
     </div>
   </section>
 
@@ -72,7 +78,7 @@
   </section>
 
   <!-- maroon quick-start band, in the jekyll idiom -->
-  <section class="quickstart">
+  <section id="quickstart" class="quickstart">
     <div class="wrap">
       <div class="qs-intro">
         <p class="label">Quick-start</p>
@@ -123,6 +129,16 @@
       <p class="legend">
         <span class="tag t-done">done</span> implemented &amp; tested — <strong>10/10</strong> ·
         depth improvements continue on the <a href="#roadmap">roadmap</a>
+      </p>
+      <p class="sub">
+        <strong>Known limitations, because "done" is not the same as "tells you everything".</strong>
+        One category currently carries a caveat you should read before trusting a clean row:
+        <a href="https://docs.llmsec.dev/owasp/llm06/">LLM06 (excessive agency)</a> can only report what
+        your application actually emits, so if yours describes an action in prose instead of emitting the
+        signature you passed, a clean row means "not observed" rather than "not vulnerable". Every
+        limitation we know about is written down in the
+        <a href="https://docs.llmsec.dev/changelog/">changelog</a> as it is found, and removed from there
+        when it is fixed, not when it is forgotten.
       </p>
     </div>
   </section>

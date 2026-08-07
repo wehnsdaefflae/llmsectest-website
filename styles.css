@@ -88,6 +88,17 @@ code, kbd { font-family: var(--mono); }
 }
 .hero .lede { font-weight: 300; font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--dim); max-width: 50ch; margin: 0; }
 .hero .lede strong { font-weight: 400; color: var(--text); }
+.hero-cta { margin-top: 1.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; }
+.hero-cta code {
+  font-family: var(--mono); font-size: .88rem; color: var(--text);
+  background: var(--term); color: #e8e6e1; padding: .6rem .85rem; border-radius: 6px;
+  border: 1px solid #000; overflow-x: auto; max-width: 100%;
+}
+.hero-cta .btn {
+  font-size: .95rem; color: var(--gold); border: 1px solid currentColor;
+  border-radius: 4px; padding: .55rem .95rem; white-space: nowrap;
+}
+.hero-cta .btn:hover { color: var(--gold-h); }
 
 /* ───────────── feature triptych ───────────── */
 .features { padding-bottom: clamp(2.4rem, 6vw, 3.8rem); }

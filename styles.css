@@ -195,8 +195,23 @@ code, kbd { font-family: var(--mono); }
 .foot-fund a { text-decoration: underline; text-underline-offset: 2px; }
 .fund-logos { margin-top: 1.2rem; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 1.3rem; background: #fff; border-radius: 8px; padding: .75rem 1.05rem; }
 .fund-logos img { display: block; width: auto; }
-.fund-logos .logo-bmftr { height: 48px; }
-.fund-logos .logo-ptf { height: 36px; }
+/* The Zuwendungsbescheid says the BMFTR logo must be placed "gut sichtbar", and both
+   official files carry their own white space (for the BMFTR mark the required clearance is
+   the height of the Bundesadler), so the only variable we control is the rendered height.
+   At 48px the ministry wordmark inside an 851x568 file came out ~15px tall, and Mark read
+   the pair as too small on the live site on 2026-08-11.
+
+   So the logos now get a row of their own rather than sharing one with the funding text:
+   the panel is full width within the footer column and the two stack on their own lines,
+   which buys height instead of spending it on fitting them side by side. The BMFTR mark is
+   the funder and stays the larger of the two. */
+.fund-logos { flex-direction: column; align-items: flex-start; gap: 1.1rem; padding: 1.1rem 1.35rem; }
+.fund-logos .logo-bmftr { height: 104px; }
+.fund-logos .logo-ptf { height: 58px; }
+@media (max-width: 900px) {
+  .fund-logos .logo-bmftr { height: 88px; }
+  .fund-logos .logo-ptf { height: 50px; }
+}
 .foot-links { display: flex; flex-direction: column; gap: .5rem; }
 .foot-links a { color: var(--dim); font-size: .9rem; }
 .foot-links a:hover { color: var(--gold); }

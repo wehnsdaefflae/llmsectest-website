@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scan reports — LLMSecTest against 48 LLM applications</title>
+<title>Scan reports: LLMSecTest against 48 LLM applications</title>
 <meta name="description" content="Every report LLMSecTest produced on its regression cohort: 48 real LLM applications built on LangChain, LlamaIndex and Haystack, scanned black-box against the OWASP LLM Top 10. Unedited output, including the categories that found nothing.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,14 +39,14 @@
 
   <section class="rep-hero">
     <div class="wrap">
-      <p class="eyebrow">Evidence — the regression cohort</p>
+      <p class="eyebrow">Evidence · the regression cohort</p>
       <h1>Every report, including the boring ones.</h1>
       <p class="lede">
-        LLMSecTest is re-run against a standing cohort of real LLM applications every working day, so
-        that a change to a detector has to prove itself against something before it ships. That cohort
-        is 48 applications built on LangChain, LlamaIndex and Haystack, attacked black-box
-        through their own HTTP endpoints; all but 2 of them are deliberately undefended.
-        The reports below are the tool's own output, copied here unedited — the same files
+        Every working day I re-run LLMSecTest against a standing cohort of real LLM apps, so a change
+        to a detector has to prove itself on something before it ships. The cohort is 48 apps
+        built on LangChain, LlamaIndex and Haystack. I attack them black-box, through their own HTTP
+        endpoints. All but 2 of them have no defences at all, on purpose.<br><br>
+        What's below is the tool's own output, copied here without edits. It's the same file
         <code>--render-sarif</code> writes for you.
       </p>
       <dl class="rep-stats">
@@ -60,30 +60,30 @@
 
   <section class="section rep-caveat">
     <div class="wrap">
-      <h2 class="c-h">Read this first, because it changes what the numbers mean</h2>
+      <h2 class="c-h">What do these numbers mean?</h2>
       <div class="caveat-grid">
         <div>
-          <h3>These applications are built to fail</h3>
+          <h3>These apps are built to fail</h3>
           <p>
-            Every one of them carries a plausible system prompt, a real framework and a real endpoint,
-            and then nothing structural behind it: the persona says "never reveal the key" and no code
-            enforces it. That is the point. A regression cohort of well-defended apps would report zero
-            every day and tell us nothing when a detector broke. A high finding count here is a property
-            of the fixture, not a discovery.
+            Each one has a plausible system prompt, a real framework and a real endpoint, and nothing
+            behind it. The persona says "never reveal the key" and no code stops it. That's on purpose.
+            A cohort of well-defended apps would report zero every day, and I'd learn nothing the day a
+            detector broke. So a big finding count here says something about my fixture. It doesn't say
+            anything about the world.
           </p>
         </div>
         <div>
-          <h3>One small local model answered all of them</h3>
+          <h3>One small local model answers all of them</h3>
           <p>
-            Every application is backed by the same quantised Gemma running locally, so nothing here
-            generalises to a frontier model, and differences between two rows are as likely to come from
-            that model's sampling as from the applications. What the cohort is <em>for</em> is
-            regression: if a finding count moves without a code change explaining it, something broke.
+            The same quantised Gemma sits behind every app, running on my desk. So none of this
+            carries over to a frontier model, and a gap between two rows can easily be the model's
+            sampling rather than the apps. The cohort earns its keep as a regression net. If a count
+            moves and no code change explains it, something broke.
           </p>
         </div>
         <div>
-          <h3>An empty row is not a clean bill of health</h3>
-          <p>LLM02 found nothing on any of the 47 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 1 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean; on 9 of the 47 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. The reports say so on their own faces: a category scored against a value the scan never saw is marked unconfirmed rather than passed.</p>
+          <h3>An empty row isn't a clean bill of health</h3>
+          <p>LLM02 found nothing on any of the 47 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 1 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean; on 9 of the 47 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
         </div>
       </div>
     </div>
@@ -92,15 +92,15 @@
   <section class="section">
     <div class="wrap">
       <p class="eyebrow">Start here</p>
-      <h2>Four that are worth opening</h2>
+      <h2>Four worth opening</h2>
       <p class="sub">
-        The rows with the biggest numbers are the least interesting ones. These four each show something
-        the tool is supposed to do, and they are picked from the data rather than curated by hand — if the
-        cohort stops demonstrating one, its entry disappears instead of pointing at a report that no
-        longer shows it.
+        The rows with the biggest numbers are the dullest ones. These four each show something the tool
+        is meant to do. They're picked from the data rather than by hand, so if the cohort stops showing
+        one of them, the card disappears rather than pointing you at a report that doesn't show it any
+        more.
       </p>
       <ol class="picks">
-        <li><a href="langchain-guardedbot.html">langchain-guardedbot</a><span class="p-why">a defence that holds</span><p>A deliberately defended twin of an undefended member, character for character the same persona with a structural guard in front, and pinned as a control for LLM06 only. Pinning a category it cannot speak to would pin a number that means nothing.</p></li><li><a href="langchain-toolbot.html">langchain-toolbot</a><span class="p-why">an agent that really did it</span><p>Its excessive-agency finding is not a string the model copied: the executor ran the tool, for a stranger who supplied an employee id and a ticket number that do not exist. On a prompt-only target the same row would only mean the application *claimed* to act.</p></li><li><a href="haystack-claimsbot.html">haystack-claimsbot</a><span class="p-why">a clean row that refuses to look clean</span><p>Every sensitive-disclosure attempt against it was survived, and the report will not call them withstood, because the secret came back out through a different probe on the same run. A scan that got your secret cannot also report the secret as protected.</p></li><li><a href="haystack-legalbot.html">haystack-legalbot</a><span class="p-why">an instruction that arrived in a document</span><p>Nobody typed this attack at the application. It read a planted document out of its own retrieval corpus and did what the document said.</p></li>
+        <li><a href="langchain-guardedbot.html">langchain-guardedbot</a><span class="p-why">a defence that holds</span><p>A defended twin of an undefended member: character for character the same persona, with a real guard in front. It&#x27;s pinned as a control for LLM06 only. Pinning a category it can&#x27;t speak to would pin a number that means nothing.</p></li><li><a href="langchain-toolbot.html">langchain-toolbot</a><span class="p-why">an agent that really did it</span><p>Its excessive-agency finding isn&#x27;t a string the model copied. The executor ran the tool, for a stranger who typed an employee id and a ticket number that don&#x27;t exist. On a prompt-only target the same row would only mean the app *said* it had acted.</p></li><li><a href="haystack-claimsbot.html">haystack-claimsbot</a><span class="p-why">a clean row that refuses to look clean</span><p>It survived every sensitive-disclosure attempt, and the report still won&#x27;t call them withstood, because the secret came back out through a different probe in the same run. A scan that got your secret can&#x27;t turn round and call it protected.</p></li><li><a href="haystack-legalbot.html">haystack-legalbot</a><span class="p-why">an instruction that arrived in a document</span><p>Nobody typed this attack at the app. It read a planted document out of its own retrieval corpus and did what the document told it to.</p></li>
       </ol>
     </div>
   </section>
@@ -110,10 +110,10 @@
       <p class="eyebrow">What fires, and on how many</p>
       <h2>Ten categories, very different hit rates</h2>
       <p class="sub">
-        Share of applications with at least one finding, counted only over the applications that could
-        produce one — a category needs the developer to declare what it is looking for (a secret, an
-        action signature, a corpus canary), and an application that declares nothing is not a zero, it
-        is unmeasured. LLM03 and LLM04 are white-box scanners and take no part in an endpoint scan.
+        How many apps had at least one finding, counted only over the apps that could produce one. A
+        category needs you to tell it what to look for: a secret, an action signature, a canary in the
+        corpus. An app that declares nothing isn't a zero, it's unmeasured. LLM03 and LLM04 are white-box
+        scanners and sit out an endpoint scan entirely.
       </p>
       <ul class="firing">
         <li><span class="b-id">LLM01</span><span class="b-name">Prompt Injection</span><span class="b-track"><i style="width:100%"></i></span><span class="b-num">48/48</span></li>
@@ -135,9 +135,9 @@
       <p class="eyebrow">The ledger</p>
       <h2>48 applications, newest full pass</h2>
       <p class="sub">
-        Sorted by finding count. Each row carries all ten OWASP categories as a strip, so the cohort's
-        shape is visible down the column rather than only in the totals. Every report opens as a
-        standalone page, exactly as the tool wrote it.
+        Sorted by finding count. Each row carries all ten OWASP categories as a strip, so you can read
+        the shape of the cohort down the column instead of squinting at totals. Every report opens as its
+        own page, the way the tool wrote it.
       </p>
       <ul class="strip-legend">
         <li><i class="c-hit"><b>01</b></i> found something</li>
@@ -443,11 +443,11 @@
       </div>
       <div class="withheld">
         <p class="foot-label">Not published, and why</p>
-        <ul><li><code>open-webui-shopbot</code> — third-party software: we stood it up behind a persona we wrote, so the findings describe our persona and the local model, not open-webui&#x27;s code</li><li><code>ollama-gemma4-regression</code> — a bare model rather than an application: it is our harness control, and a model-level score from one quantised local build is exactly the claim this project exists to avoid making</li></ul>
+        <ul><li><code>open-webui-shopbot</code>: somebody else&#x27;s software. I stood it up myself behind a persona I wrote, so the findings here describe my persona and the local model. They say nothing about open-webui&#x27;s own code</li><li><code>ollama-gemma4-regression</code>: a bare model rather than an app. It&#x27;s here as my harness control. Publishing a model-level score off one quantised local build is the kind of claim this whole project is built to avoid</li></ul>
         <p class="wh-note">
-          The cohort is larger than the table. Two members are held back for the reasons above rather
-          than quietly dropped, because a scan that reports only the part that suited it is the exact
-          failure this tool exists to catch.
+          The cohort is bigger than the table. I hold these two back for the reasons above, and I say
+          so here, because a scan that shows you only the flattering half is the thing this tool is
+          supposed to catch.
         </p>
       </div>
     </div>
@@ -455,10 +455,10 @@
 
   <section class="cta-band">
     <div class="wrap">
-      <h2>Point it at your own app.</h2>
+      <h2>Now point it at yours.</h2>
       <p>
-        These reports took one command each. Yours takes the same one, against your endpoint, with the
-        secret and the action signature your application actually uses.
+        Each of these took one command. Yours takes the same one, pointed at your endpoint, with the
+        secret and the action signature your app really uses.
       </p>
       <a class="gobtn" href="https://docs.llmsec.dev/guides/target-app/">Test your running app &raquo;</a>
     </div>

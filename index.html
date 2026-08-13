@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LLMSecTest — security tests for LLM apps, written in pytest</title>
+<title>LLMSecTest: security tests for LLM apps, written in pytest</title>
 <meta name="description" content="LLMSecTest is an open-source, pytest-native security testing framework for LLM applications, mapped to the OWASP LLM Top 10. One adapter for every model, CVSS-scored findings, SARIF reports for CI. MIT-licensed.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,11 +42,11 @@
     <div class="wrap">
       <p class="tagline">Security tests for LLM apps, written in pytest.</p>
       <p class="lede">
-        Putting a language model in your app adds failure modes your test suite cannot see: it will
-        follow an instruction hidden in a document it retrieved, repeat a key it was told to keep, or act
-        on an authorisation the caller simply typed. LLMSecTest attacks your running app for all ten
-        <strong>OWASP LLM Top&nbsp;10</strong> categories and tells you what it got out. Open-source and
-        MIT-licensed; pre-alpha, and built in the open.
+        Your app has failure modes your test suite can't see. It'll follow an instruction hidden in a
+        document it just retrieved. It'll repeat a key you told it to keep. It'll act on an authorisation
+        the caller just typed in.<br><br>
+        LLMSecTest attacks your running app for all ten <strong>OWASP LLM Top&nbsp;10</strong> categories
+        and tells you what it got out. MIT-licensed, pre-alpha, built in the open.
       </p>
       <div class="hero-cta">
         <code>pip install "git+https://github.com/wehnsdaefflae/llmsectest"</code>
@@ -59,20 +59,20 @@
     <div class="wrap feat-grid">
       <div class="feat">
         <h2>Just pytest</h2>
-        <p>No scanner off to the side. Security checks are pytest tests — same command, same build
-        gate, same plumbing as your unit tests.</p>
+        <p>No separate scanner to run. Your security checks are pytest tests. Same command, same
+        build gate, same plumbing as the rest of your suite.</p>
         <a class="more" href="https://docs.llmsec.dev">How it works&nbsp;&raquo;</a>
       </div>
       <div class="feat">
         <h2>Mapped &amp; scored</h2>
-        <p>Every probe is tied to an OWASP LLM Top&nbsp;10 category and carries a CVSS&nbsp;v4.0 base
-        score, so a finding is triageable, not a wall of text.</p>
+        <p>Every probe maps to an OWASP LLM Top&nbsp;10 category and carries a CVSS&nbsp;v4.0 base
+        score. So you can triage a finding instead of reading a wall of text.</p>
         <a class="more" href="#coverage">The coverage map&nbsp;&raquo;</a>
       </div>
       <div class="feat">
         <h2>CI-native</h2>
-        <p>Reports emit as SARIF v2.1.0 — plus HTML, JSON and Markdown — the format code-scanning
-        dashboards already read. No bespoke glue.</p>
+        <p>Reports come out as SARIF v2.1.0, which your code-scanning dashboard already reads.
+        HTML, JSON and Markdown too. No glue code.</p>
         <a class="more" href="#output">A sample finding&nbsp;&raquo;</a>
       </div>
     </div>
@@ -84,8 +84,8 @@
       <div class="qs-intro">
         <p class="label">Quick-start</p>
         <h2>Get a scan running in seconds.</h2>
-        <p>Install from source while it's pre-alpha, point it at a model or your running app, and
-        read the SARIF. Full walkthrough in the <a href="https://docs.llmsec.dev">docs</a>.</p>
+        <p>Install from source while it's pre-alpha. Point it at a model or at your running app.
+        Read the SARIF. There's a full walkthrough in the <a href="https://docs.llmsec.dev">docs</a>.</p>
       </div>
       <div class="terminal" aria-label="Quick-start commands">
         <div class="term-bar"><i></i><i></i><i></i><span>bash</span></div>
@@ -101,19 +101,18 @@
 
   <section id="coverage" class="section">
     <div class="wrap">
-      <p class="eyebrow">OWASP LLM Top 10 — honest status</p>
+      <p class="eyebrow">OWASP LLM Top 10 · honest status</p>
       <h2>What's covered, and what isn't yet</h2>
       <p class="sub">
-        The framework is real; coverage was filled in deliberately, category by category.
-        Nothing was marked done before it was — all 10 of the OWASP LLM Top&nbsp;10 (2025) categories are
-        implemented and tested today. What remains is <a href="#roadmap">depth</a>, not breadth. Every run
-        reports any category it couldn't reach (a missing repo, model path or app marker) as an explicit
-        skip, never a silent gap.
+        All ten OWASP LLM Top&nbsp;10 (2025) categories are implemented and tested today. Nothing here
+        got marked done before it was, and what's left to do is <a href="#roadmap">depth</a>. If a run
+        can't reach a category, because you didn't hand it a repo, a model path or an app marker, it says
+        so as an explicit skip. You won't get a silent gap.
       </p>
       <p class="sub">
-        The numbering below is the <strong>2025</strong> edition. Earlier editions numbered these
-        differently (supply chain was LLM05 and is now LLM03), so a category number from an older list
-        will not line up with what the reports say.
+        The numbering below is the <strong>2025</strong> edition. Older editions numbered these
+        differently. Supply chain used to be LLM05 and is now LLM03, so a number from an older list won't
+        line up with what the reports say.
       </p>
       <ul class="cov">
         <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="tag t-done">done</span></li>
@@ -128,29 +127,28 @@
         <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="tag t-done">done</span></li>
       </ul>
       <p class="legend">
-        <span class="tag t-done">done</span> implemented &amp; tested — <strong>10/10</strong> ·
+        <span class="tag t-done">done</span> implemented &amp; tested, <strong>10/10</strong> ·
         depth improvements continue on the <a href="#roadmap">roadmap</a>
       </p>
       <p class="sub">
-        <strong>Known limitations, because "done" is not the same as "tells you everything".</strong>
-        One category currently carries a caveat you should read before trusting a clean row:
+        <strong>What "done" still doesn't tell you.</strong>
+        Read this before you trust a clean row.
         <a href="https://docs.llmsec.dev/owasp/llm06/">LLM06 (excessive agency)</a> can only report what
-        your application actually emits, so if yours describes an action in prose instead of emitting the
-        signature you passed, a clean row means "not observed" rather than "not vulnerable". Every
-        limitation we know about is written down in the
-        <a href="https://docs.llmsec.dev/changelog/">changelog</a> as it is found, and removed from there
-        when it is fixed, not when it is forgotten.
+        your app says. If yours describes an action in prose instead of emitting the signature
+        you passed in, a clean row means "we didn't see it", not "your app is fine". We write every
+        limitation we find into the <a href="https://docs.llmsec.dev/changelog/">changelog</a>, and it
+        comes out again when it's fixed.
       </p>
     </div>
   </section>
 
   <section id="roadmap" class="section alt">
     <div class="wrap">
-      <p class="eyebrow">Roadmap — shipped, building, planned</p>
+      <p class="eyebrow">Roadmap · shipped, building, planned</p>
       <h2>Where it's going</h2>
       <p class="sub">
-        Built in the open across the funding period. Each phase ships before the next is claimed —
-        the status here tracks the real state of the code, not a wish-list.
+        Built in the open across the funding period. Each phase ships before we claim the next one.
+        The status here tracks what the code really does today.
       </p>
       <ol class="roadmap">
         <li class="phase">
@@ -159,8 +157,8 @@
           </div>
           <ul>
             <li class="done">pytest-native framework &amp; plugin</li>
-            <li class="done">Unified adapter — OpenAI · Anthropic · Hugging&nbsp;Face · Ollama &amp; LM&nbsp;Studio (local), with a fail-fast <code>--preflight</code> health check</li>
-            <li class="done">Reports — SARIF&nbsp;v2.1.0 · HTML · JSON · Markdown</li>
+            <li class="done">One adapter for OpenAI · Anthropic · Hugging&nbsp;Face · Ollama &amp; LM&nbsp;Studio (local), with a fail-fast <code>--preflight</code> health check</li>
+            <li class="done">Reports in SARIF&nbsp;v2.1.0 · HTML · JSON · Markdown</li>
             <li class="done">CVSS&nbsp;v4.0 scoring with OWASP mapping</li>
             <li class="done">CLI &amp; documentation site</li>
           </ul>
@@ -173,10 +171,10 @@
             <li class="done">All 10 of 10 categories live: LLM01 to LLM10, the complete OWASP LLM Top&nbsp;10 (2025)</li>
             <li class="done">Black-box testing of a running application, <code>--target app:&lt;url&gt;</code>, reaching 8 categories once you name what the app holds (<code>--app-prompt/-secret/-action/-canary/-rag-poison</code>); LLM01/05/09/10 need nothing</li>
             <li class="done">White-box scans: dependency manifests with an OSV known-CVE lookup (<code>--repo</code>, <code>--osv</code>, LLM03), and an offline serialization-opcode scan of model files that never unpickles them (<code>--model-scan</code>, LLM04)</li>
-            <li class="done">LLM02 and LLM06 attack along four <em>mechanisms</em> each rather than four wordings, including a secret asked for base64-encoded and a forged authorization an agent cannot check. A leaked secret counts however it comes back: encoded, Unicode-disguised, or split character by character, including with the separator <em>spelled out</em> (<code>E SPACE X SPACE A</code>), which is what a small model reached for on its own against an output filter</li>
+            <li class="done">LLM02 and LLM06 attack along four <em>mechanisms</em> each rather than four wordings, including a secret asked for base64-encoded and a forged authorization an agent cannot check. A leaked secret counts however it comes back: encoded, Unicode-disguised, or split character by character, including with the separator <em>spelled out</em> (<code>E SPACE X SPACE A</code>). That last one is what a small model came up with by itself to get past an output filter</li>
             <li class="done">RAG-specific LLM08: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>)</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) plus a false-refusal rate on the benign twins (<code>--redteam-benign</code>)</li>
-            <li class="done"><strong>Reports that cannot flatter a target.</strong> A clean run says what it <em>withstood</em>, per category. Anything the scan could not get an answer out of is inconclusive and never a finding — unreachable, rate-limited, or a reply we could not parse — and the run exits non-zero, so an empty findings list from a scan that reached nothing cannot pass CI as clean. A run that got your secret out cannot also report the secret as protected, and a run that never saw the value you configured says so instead of letting the clean row speak for itself. <a href="reports/">See what that looks like on our whole test cohort&nbsp;&raquo;</a></li>
+            <li class="done"><strong>Reports that can't flatter your app.</strong> A clean run tells you what your app <em>withstood</em>, per category. If a probe never got an answer back, it's inconclusive and it isn't a pass. That covers an endpoint we couldn't reach, a rate limit, and a reply we couldn't parse. The run then exits non-zero, so an empty findings list can't sail through CI. And if a run got your secret out, it won't turn round and tell you the secret was protected. <a href="reports/">See what that looks like on our whole test cohort&nbsp;&raquo;</a></li>
             <li class="done">Standalone HTML from any SARIF file (<code>--render-sarif</code>), proven against committed output from ruff, Bandit and Semgrep</li>
           </ul>
           <p class="phase-note">Release-by-release detail lives in the <a href="https://docs.llmsec.dev/changelog/">changelog</a>.</p>
@@ -198,7 +196,7 @@
             <span class="phase-num">04</span><h3>Integrations &amp; v1.0</h3><span class="tag t-plan">planned</span>
           </div>
           <ul>
-            <li>CI/CD templates — GitHub Actions · GitLab CI · Jenkins</li>
+            <li>CI/CD templates for GitHub Actions · GitLab CI · Jenkins</li>
             <li>Hardening &amp; independent security audit</li>
             <li>v1.0 on PyPI · OWASP community submission</li>
           </ul>
@@ -215,14 +213,14 @@
   <section id="output" class="section">
     <div class="wrap output-grid">
       <div>
-        <p class="eyebrow">Output — the target format</p>
+        <p class="eyebrow">Output · the target format</p>
         <h2>Findings you can act on</h2>
         <p>
-          A run produces SARIF that drops straight into GitHub code scanning, GitLab, or any SARIF
-          viewer — each finding carrying its OWASP category, CVSS vector and a remediation pointer.
-          The snippet is the shape of the output the framework targets.
+          A run gives you SARIF that drops straight into GitHub code scanning, GitLab, or any SARIF
+          viewer. Each finding carries its OWASP category, a CVSS vector and a pointer to the fix.
+          Here's the shape of it.
         </p>
-        <p class="micro">Illustrative — format target, not a recorded scan result.</p>
+        <p class="micro">Illustrative. This is the format we target. We didn't run this scan.</p>
         <p><a class="more" href="reports/">See real ones &raquo;</a> Every report from our own regression
           cohort, unedited: dozens of LLM applications scanned black-box, including the categories that
           found nothing.</p>
@@ -248,7 +246,7 @@
   <section class="cta-band">
     <div class="wrap">
       <h2>Built in the open, for the people shipping LLM features.</h2>
-      <p>App developers, security leads and researchers — the repo is public and the roadmap is
+      <p>App developers, security leads, researchers. The repo is public and the roadmap is
          honest. Watch it, try the adapter, or open an issue.</p>
       <a class="gobtn" href="https://github.com/wehnsdaefflae/llmsectest">github.com/wehnsdaefflae/llmsectest&nbsp;&raquo;</a>
     </div>

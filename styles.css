@@ -73,7 +73,7 @@ code, kbd { font-family: var(--mono); }
 .logo .mark { width: 1.15em; height: 1.15em; border-radius: .28em; }
 .logo:hover { color: var(--gold); }
 
-.nav { display: flex; align-items: center; gap: 1.5rem; margin-left: auto; font-size: .78rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.nav { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .6rem 1.5rem; margin-left: auto; min-width: 0; font-size: .78rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
 .nav a { color: var(--text); }
 .nav a:hover { color: var(--gold); }
 .nav .ver { font-family: var(--mono); font-weight: 400; font-size: .72rem; letter-spacing: 0; color: var(--mut); text-transform: none; }
@@ -193,24 +193,44 @@ code, kbd { font-family: var(--mono); }
 .foot-brand p { color: var(--dim); font-size: .88rem; margin: .8rem 0 0; }
 .foot-fund p { color: var(--dim); font-size: .8rem; line-height: 1.55; margin: 0; }
 .foot-fund a { text-decoration: underline; text-underline-offset: 2px; }
-.fund-logos { margin-top: 1.2rem; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 1.3rem; background: #fff; border-radius: 8px; padding: .75rem 1.05rem; }
-.fund-logos img { display: block; width: auto; }
-/* The Zuwendungsbescheid says the BMFTR logo must be placed "gut sichtbar", and both
-   official files carry their own white space (for the BMFTR mark the required clearance is
-   the height of the Bundesadler), so the only variable we control is the rendered height.
-   At 48px the ministry wordmark inside an 851x568 file came out ~15px tall, and Mark read
-   the pair as too small on the live site on 2026-08-11.
+/* ── funder credit ──
+   Measured on the live page 2026-08-13 before changing anything, because "too small" needs
+   a number. Both official files carry large internal whitespace (the BMFTR mark's ink is
+   66.7% of its file height, the Prototype Fund's 79.3%), so the rendered box overstates the
+   mark by a third. At the previous 104px / 58px that put the BMFTR lockup's own caption line
+   at **7.7px** and the Prototype Fund's at **5.2px**, with two elements of the PTF lockup
+   landing at 1.3-1.4px, i.e. below legibility on any display. The page's smallest text is
+   12.8px and its labels 11.2px, so the credit the Zuwendungsbescheid requires to be "gut
+   sichtbar" was the least legible thing on the page.
 
-   So the logos now get a row of their own rather than sharing one with the funding text:
-   the panel is full width within the footer column and the two stack on their own lines,
-   which buys height instead of spending it on fitting them side by side. The BMFTR mark is
-   the funder and stays the larger of the two. */
-.fund-logos { flex-direction: column; align-items: flex-start; gap: 1.1rem; padding: 1.1rem 1.35rem; }
-.fund-logos .logo-bmftr { height: 104px; }
-.fund-logos .logo-ptf { height: 58px; }
+   The binding constraint was the layout, not the height: the panel sat inside a 199px-wide
+   footer column. So the credit now has a row of its own across the full footer width, the
+   two marks sit side by side separated by a hairline, and the heights rise ~35%. That puts
+   the BMFTR caption at ~10.4px, its ministry wordmark lines at ~21px, and the Prototype Fund
+   wordmark at ~32px. */
+.foot-credit { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter) 2.1rem; }
+.fund-logos {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.2rem);
+  background: #fff; border-radius: 10px; padding: 1.4rem clamp(1.4rem, 4vw, 2.6rem);
+  box-shadow: 0 18px 40px -30px rgba(0,0,0,.9);
+  /* hug the marks: both files are mostly whitespace already, so a full-bleed white strip
+     reads as an empty box rather than as a credit */
+  width: fit-content; max-width: 100%; margin-inline: auto;
+}
+.fund-logos img { display: block; width: auto; max-width: 100%; }
+.fund-logos .logo-bmftr { height: 140px; }
+.fund-logos .logo-ptf { height: 78px; }
+.fund-rule { width: 1px; align-self: stretch; background: #e2e6ec; margin-block: .35rem; }
 @media (max-width: 900px) {
-  .fund-logos .logo-bmftr { height: 88px; }
-  .fund-logos .logo-ptf { height: 50px; }
+  .fund-logos .logo-bmftr { height: 118px; }
+  .fund-logos .logo-ptf { height: 66px; }
+}
+@media (max-width: 560px) {
+  .fund-logos { flex-direction: column; gap: 1.4rem; }
+  .fund-rule { width: 70%; height: 1px; align-self: center; margin: 0; }
+  .fund-logos .logo-bmftr { height: 104px; }
+  .fund-logos .logo-ptf { height: 58px; }
 }
 .foot-links { display: flex; flex-direction: column; gap: .5rem; }
 .foot-links a { color: var(--dim); font-size: .9rem; }
@@ -229,7 +249,108 @@ code, kbd { font-family: var(--mono); }
 @media (max-width: 560px) {
   body { font-size: 18px; }
   .nav a.hideable { display: none; }
-  .nav { gap: 1.1rem; }
+  /* the version chip is decoration; the nav links are the page's only way out. Adding
+     "Reports" to the nav on 2026-08-13 pushed the header 68px past a 375px viewport and
+     took the whole document horizontally scrollable with it, which is why .nav also wraps
+     now: a header must not be one nav item away from breaking the page. */
+  .nav .ver { display: none; }
+  .nav { gap: .55rem .95rem; }
   .cov li { grid-template-columns: 4rem 1fr; }
   .cov li .tag { grid-column: 2; justify-self: start; }
 }
+
+/* ═════════════ /reports/ — the evidence ledger ═════════════
+   A dense catalogue rather than a landing page. The one element carrying the argument is
+   the per-application category strip: ten cells, lit where a category found something.
+   Read down the column and the cohort's actual story is visible as texture — LLM01 lit on
+   every row, LLM02 dark on every row — which no prose summary makes as immediate. */
+
+.nav a.cur { color: var(--gold); }
+
+.rep-hero { padding-block: clamp(2.6rem, 6vw, 4rem) clamp(1.8rem, 4vw, 2.6rem); }
+.rep-hero h1 {
+  font-weight: 300; font-size: clamp(2rem, 4.8vw, 3.4rem); line-height: 1.06;
+  color: var(--head); margin: 0 0 1rem; max-width: 18ch;
+}
+.rep-hero .lede { font-weight: 300; font-size: clamp(1rem, 1.6vw, 1.18rem); color: var(--dim); max-width: 62ch; margin: 0; }
+.rep-hero .lede code { font-size: .86em; color: var(--gold); }
+
+.rep-stats { display: flex; flex-wrap: wrap; gap: 0; margin: 2.2rem 0 0; padding: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.rep-stats > div { flex: 1 1 8rem; padding: .95rem 1.25rem; border-left: 1px solid var(--line-2); background: var(--panel); }
+.rep-stats > div:first-child { border-left: none; }
+/* #a6a6a6 rather than --dim: at .68rem this is small text, so it needs 4.5:1 and
+   --dim on the raised panel gives 3.99. Hierarchy is carried by size, case and
+   letter-spacing against a 1.9rem gold value, not by making the label unreadable. */
+.rep-stats dt { font-family: var(--mono); font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: #a6a6a6; margin: 0 0 .3rem; }
+.rep-stats dd { margin: 0; font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; }
+.rep-stats dd.mono-dd { font-family: var(--mono); font-size: 1.05rem; font-weight: 400; color: var(--text); padding-block: .42rem; }
+
+/* the caveat block leads, and is styled to be read rather than skipped */
+.rep-caveat { border-top: 1px solid var(--line-2); }
+.rep-caveat .c-h { font-size: clamp(1.15rem, 2.2vw, 1.45rem); font-weight: 700; margin: 0 0 1.4rem; color: var(--head); }
+.caveat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.4rem, 3.5vw, 2.6rem); }
+.caveat-grid > div { border-left: 2px solid var(--gold); padding-left: 1.15rem; }
+.caveat-grid h3 { font-size: 1rem; font-weight: 700; color: var(--head); margin: 0 0 .5rem; }
+.caveat-grid p { margin: 0; color: var(--dim); font-size: .92rem; line-height: 1.6; }
+
+/* firing rates */
+.firing { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+.firing li { display: grid; grid-template-columns: 4.2rem minmax(0, 15rem) 1fr 4.5rem; align-items: center; gap: .9rem; padding: .5rem .25rem; border-top: 1px solid var(--line-2); }
+.firing li:first-child { border-top: none; }
+.firing .b-id { font-family: var(--mono); font-size: .8rem; color: var(--gold); }
+.firing .b-name { font-size: .93rem; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.firing .b-track { height: 9px; background: #2a2a2a; border-radius: 5px; overflow: hidden; }
+.firing .b-track i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold-h), var(--gold)); border-radius: 5px; }
+.firing .b-num { font-family: var(--mono); font-size: .78rem; color: var(--dim); text-align: right; }
+.firing li.na .b-name, .firing li.na .b-id { color: var(--mut); }
+.firing li.na .b-track { background: repeating-linear-gradient(45deg, #2a2a2a 0 5px, #313131 5px 10px); }
+.firing li.na .b-num { color: var(--mut); font-size: .7rem; }
+
+/* the ledger */
+.ledger-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+.ledger { width: 100%; border-collapse: collapse; font-size: .93rem; min-width: 46rem; }
+.ledger thead th { font-family: var(--mono); font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: var(--mut); font-weight: 400; text-align: left; padding: .8rem 1rem; background: var(--bg-2); border-bottom: 1px solid var(--line); }
+.ledger td { padding: .7rem 1rem; border-top: 1px solid var(--line-2); background: var(--panel); vertical-align: middle; }
+.ledger tbody tr:hover td { background: #424242; }
+.ledger .r-n { font-family: var(--mono); font-size: .76rem; color: var(--mut); width: 3.2rem; }
+.ledger .r-name a { font-weight: 700; }
+.ledger .r-f { text-align: right; width: 5.5rem; font-family: var(--mono); }
+.ledger .r-f b { font-size: 1.05rem; color: var(--head); font-weight: 700; }
+.ledger .chip { display: inline-block; margin-left: .5ch; font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; text-transform: uppercase; color: var(--mut); border: 1px solid var(--line); border-radius: 3px; padding: .1rem .4rem; vertical-align: 1px; }
+.ledger .chip.ctl { color: var(--ok); border-color: currentColor; }
+
+/* the ten-cell strip */
+.r-strip { white-space: nowrap; }
+.r-strip i, .legend-i { display: inline-block; width: 1.55rem; height: 1.15rem; margin-right: 2px; border-radius: 2px; text-align: center; font-style: normal; }
+.r-strip i b, .legend-i b { font-family: var(--mono); font-size: .6rem; font-weight: 400; line-height: 1.15rem; }
+.c-hit { background: var(--gold); }
+.c-hit b { color: #2b2b2b; font-weight: 700 !important; }
+.c-held { background: #3f3f3f; border: 1px solid var(--line); }
+.c-held b { color: var(--dim); line-height: 1.05rem !important; }
+.c-na { background: repeating-linear-gradient(45deg, #313131 0 4px, #363636 4px 8px); }
+.c-na b { color: #555; }
+.strip-legend { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: -1.2rem 0 1.6rem; padding: 0; }
+.strip-legend li { display: flex; align-items: center; gap: .55ch; font-size: .84rem; color: var(--dim); }
+.strip-legend i { flex: none; }
+
+.withheld { margin-top: 2rem; border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; background: var(--bg-2); }
+.withheld ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .5rem; }
+.withheld li { color: var(--dim); font-size: .9rem; line-height: 1.55; }
+.withheld code { color: var(--gold); font-size: .86em; }
+.withheld .wh-note { margin: 1rem 0 0; color: var(--dim); font-size: .86rem; max-width: 70ch; }
+
+@media (max-width: 900px) {
+  .caveat-grid { grid-template-columns: 1fr; }
+  .firing li { grid-template-columns: 3.6rem 1fr 4.2rem; }
+  .firing .b-track { grid-column: 1 / -1; }
+}
+
+/* start-here picks: four worked examples ahead of the 48-row wall */
+.picks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem clamp(1.4rem, 3vw, 2.4rem); counter-reset: pick; }
+.picks li { counter-increment: pick; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 1.1rem 1.3rem 1.2rem; position: relative; }
+.picks li::before { content: counter(pick, decimal-leading-zero); position: absolute; top: 1.15rem; right: 1.2rem; font-family: var(--mono); font-size: .7rem; color: var(--mut); }
+.picks li > a { font-weight: 700; font-size: 1.02rem; display: inline-block; padding-right: 2rem; }
+.picks .p-why { display: block; font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; color: var(--gold); margin: .35rem 0 .6rem; }
+.picks p { margin: 0; color: var(--text); font-size: .9rem; line-height: 1.6; }
+@media (max-width: 760px) { .picks { grid-template-columns: 1fr; } }
+.firing .b-un { display: inline-block; margin-left: .8ch; font-family: var(--mono); font-size: .64rem; letter-spacing: .04em; text-transform: uppercase; color: #d9a441; border: 1px solid currentColor; border-radius: 3px; padding: .05rem .35rem; vertical-align: 1px; }

@@ -28,6 +28,7 @@
       <a class="hideable" href="#approach">Approach</a>
       <a class="hideable" href="#coverage">Coverage</a>
       <a class="hideable" href="#roadmap">Roadmap</a>
+      <a href="reports/">Reports</a>
       <a href="https://docs.llmsec.dev">Docs</a>
       <span class="ver">v0.1.0</span>
       <a class="gh" href="https://github.com/wehnsdaefflae/llmsectest">GitHub</a>
@@ -175,7 +176,7 @@
             <li class="done">LLM02 and LLM06 attack along four <em>mechanisms</em> each rather than four wordings, including a secret asked for base64-encoded and a forged authorization an agent cannot check. A leaked secret counts however it comes back: encoded, Unicode-disguised, or split character by character, including with the separator <em>spelled out</em> (<code>E SPACE X SPACE A</code>), which is what a small model reached for on its own against an output filter</li>
             <li class="done">RAG-specific LLM08: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>)</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) plus a false-refusal rate on the benign twins (<code>--redteam-benign</code>)</li>
-            <li class="done"><strong>Reports that cannot flatter a target.</strong> A clean run says what it withstood, per category. A target the scan could not reach is recorded inconclusive and the run exits non-zero, so an empty findings list from a scan that reached nothing cannot pass CI, and that holds on every target type because each provider's adapter is tested for it rather than assumed. A run that got your secret out cannot also report the secret as protected, and a run that never saw the value you configured says so rather than letting the clean row speak for itself. An action signature your application merely <em>recites</em> out of its own documented grammar is not counted as one it invoked. And a request that exhausts the wall-clock budget is inconclusive, except on a <em>bounded</em> LLM10 probe, where exhausting it is the finding</li>
+            <li class="done"><strong>Reports that cannot flatter a target.</strong> A clean run says what it <em>withstood</em>, per category. Anything the scan could not get an answer out of is inconclusive and never a finding — unreachable, rate-limited, or a reply we could not parse — and the run exits non-zero, so an empty findings list from a scan that reached nothing cannot pass CI as clean. A run that got your secret out cannot also report the secret as protected, and a run that never saw the value you configured says so instead of letting the clean row speak for itself. <a href="reports/">See what that looks like on our whole test cohort&nbsp;&raquo;</a></li>
             <li class="done">Standalone HTML from any SARIF file (<code>--render-sarif</code>), proven against committed output from ruff, Bandit and Semgrep</li>
           </ul>
           <p class="phase-note">Release-by-release detail lives in the <a href="https://docs.llmsec.dev/changelog/">changelog</a>.</p>
@@ -222,6 +223,9 @@
           The snippet is the shape of the output the framework targets.
         </p>
         <p class="micro">Illustrative — format target, not a recorded scan result.</p>
+        <p><a class="more" href="reports/">See real ones &raquo;</a> Every report from our own regression
+          cohort, unedited: dozens of LLM applications scanned black-box, including the categories that
+          found nothing.</p>
       </div>
       <div class="terminal code-panel" aria-label="Example SARIF finding (illustrative)">
         <div class="term-bar"><i></i><i></i><i></i><span>report.sarif</span></div>
@@ -274,12 +278,6 @@
         umgesetzt von der Open Knowledge Foundation Deutschland, betreut vom Projektträger
         VDI/VDE-IT.
       </p>
-      <div class="fund-logos">
-        <img src="assets/bmftr-funded-by-en.png" class="logo-bmftr"
-             alt="With funding from the Federal Ministry of Research, Technology and Space (BMFTR)">
-        <img src="assets/prototype-fund-en.png" class="logo-ptf"
-             alt="Supported by the Prototype Fund">
-      </div>
     </div>
     <div class="foot-links">
       <p class="foot-label">Links</p>
@@ -288,6 +286,15 @@
       <a href="https://docs.llmsec.dev/changelog/">Changelog</a>
       <a href="#roadmap">Roadmap</a>
       <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP LLM Top 10</a>
+    </div>
+  </div>
+  <div class="foot-credit">
+    <div class="fund-logos">
+      <img src="assets/bmftr-funded-by-en.png" class="logo-bmftr"
+           alt="With funding from the Federal Ministry of Research, Technology and Space (BMFTR)">
+      <span class="fund-rule" aria-hidden="true"></span>
+      <img src="assets/prototype-fund-en.png" class="logo-ptf"
+           alt="Supported by the Prototype Fund">
     </div>
   </div>
   <div class="foot-base">

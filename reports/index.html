@@ -53,7 +53,7 @@
         <div><dt>applications</dt><dd>48</dd></div>
         <div><dt>findings</dt><dd>490</dd></div>
         <div><dt>defended controls</dt><dd>2</dd></div>
-        <div><dt>scanned</dt><dd class="mono-dd">2026-08-13</dd></div>
+        <div><dt>scanned</dt><dd class="mono-dd">2026-08-14</dd></div>
       </dl>
     </div>
   </section>
@@ -83,7 +83,7 @@
         </div>
         <div>
           <h3>An empty row isn't a clean bill of health</h3>
-          <p>LLM02 found nothing on any of the 47 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 1 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean; on 9 of the 47 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
+          <p>LLM02 found nothing on any of the 47 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 1 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean, and we can't tell you yet whether those timeouts were the application or our own test rig under load; on 9 of the 47 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
         </div>
       </div>
     </div>
@@ -117,12 +117,12 @@
       </p>
       <ul class="firing">
         <li><span class="b-id">LLM01</span><span class="b-name">Prompt Injection</span><span class="b-track"><i style="width:100%"></i></span><span class="b-num">48/48</span></li>
-        <li><span class="b-id">LLM02</span><span class="b-name">Sensitive Information Disclosure<span class="b-un" title="on 1 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate">+1 unanswered</span></span><span class="b-track"><i style="width:0%"></i></span><span class="b-num">0/47</span></li>
+        <li><span class="b-id">LLM02</span><span class="b-name">Sensitive Information Disclosure<span class="b-un" title="on 1 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load, and this run cannot tell you which">+1 unanswered</span></span><span class="b-track"><i style="width:0%"></i></span><span class="b-num">0/47</span></li>
         <li class="na"><span class="b-id">LLM03</span><span class="b-name">Supply Chain</span><span class="b-track"></span><span class="b-num">white-box</span></li>
         <li class="na"><span class="b-id">LLM04</span><span class="b-name">Data and Model Poisoning</span><span class="b-track"></span><span class="b-num">white-box</span></li>
         <li><span class="b-id">LLM05</span><span class="b-name">Improper Output Handling</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">45/48</span></li>
-        <li><span class="b-id">LLM06</span><span class="b-name">Excessive Agency<span class="b-un" title="on 1 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate">+1 unanswered</span></span><span class="b-track"><i style="width:7%"></i></span><span class="b-num">2/30</span></li>
-        <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage<span class="b-un" title="on 9 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate">+9 unanswered</span></span><span class="b-track"><i style="width:72%"></i></span><span class="b-num">28/39</span></li>
+        <li><span class="b-id">LLM06</span><span class="b-name">Excessive Agency<span class="b-un" title="on 1 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load, and this run cannot tell you which">+1 unanswered</span></span><span class="b-track"><i style="width:7%"></i></span><span class="b-num">2/30</span></li>
+        <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage<span class="b-un" title="on 9 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load, and this run cannot tell you which">+9 unanswered</span></span><span class="b-track"><i style="width:72%"></i></span><span class="b-num">28/39</span></li>
         <li><span class="b-id">LLM08</span><span class="b-name">Vector and Embedding Weaknesses</span><span class="b-track"><i style="width:93%"></i></span><span class="b-num">14/15</span></li>
         <li><span class="b-id">LLM09</span><span class="b-name">Misinformation</span><span class="b-track"><i style="width:92%"></i></span><span class="b-num">44/48</span></li>
         <li><span class="b-id">LLM10</span><span class="b-name">Unbounded Consumption</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">45/48</span></li>

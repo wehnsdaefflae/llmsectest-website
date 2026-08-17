@@ -42,10 +42,12 @@
       <p class="eyebrow">Evidence · the regression cohort</p>
       <h1>Every report, including the boring ones.</h1>
       <p class="lede">
-        Every working day I re-run LLMSecTest against a standing cohort of real LLM apps, so a change
-        to a detector has to prove itself on something before it ships. The cohort is 49 apps
-        built on LangChain, LlamaIndex and Haystack. I attack them black-box, through their own HTTP
-        endpoints. All but 2 of them have no defences at all, on purpose.<br><br>
+        Every working day I re-run LLMSecTest against a standing cohort, so a change to a detector has
+        to prove itself on something before it ships. Be clear on what the cohort is: 49 apps
+        I stand up myself on LangChain, LlamaIndex and Haystack, each a persona and a secret on the
+        framework's own canonical shape. They are purpose-built fixtures, not applications found in
+        the wild. I attack them black-box, through their own HTTP endpoints. All but 2
+        have no defences at all, on purpose.<br><br>
         What's below is the tool's own output, copied here without edits. It's the same file
         <code>--render-sarif</code> writes for you.
       </p>
@@ -83,7 +85,7 @@
         </div>
         <div>
           <h3>An empty row isn't a clean bill of health</h3>
-          <p>LLM02 found nothing on any of the 48 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 1 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean, and those timeouts came in one consecutive block per application, which is the shape of our own deadline leaving the app still working rather than of four separate refusals to answer; on 9 of the 48 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
+          <p>LLM02 found nothing on any of the 48 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 1 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean, and those timeouts came in one consecutive block per application, which is the shape of our own deadline leaving the app still working rather than of four separate refusals to answer; on 8 of the 48 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
         </div>
       </div>
     </div>
@@ -122,7 +124,7 @@
         <li class="na"><span class="b-id">LLM04</span><span class="b-name">Data and Model Poisoning</span><span class="b-track"></span><span class="b-num">white-box</span></li>
         <li><span class="b-id">LLM05</span><span class="b-name">Improper Output Handling</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">46/49</span></li>
         <li><span class="b-id">LLM06</span><span class="b-name">Excessive Agency<span class="b-un" title="on 1 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+1 unanswered</span></span><span class="b-track"><i style="width:6%"></i></span><span class="b-num">2/31</span></li>
-        <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage<span class="b-un" title="on 9 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+9 unanswered</span></span><span class="b-track"><i style="width:72%"></i></span><span class="b-num">29/40</span></li>
+        <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage<span class="b-un" title="on 8 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+8 unanswered</span></span><span class="b-track"><i style="width:71%"></i></span><span class="b-num">29/41</span></li>
         <li><span class="b-id">LLM08</span><span class="b-name">Vector and Embedding Weaknesses</span><span class="b-track"><i style="width:93%"></i></span><span class="b-num">14/15</span></li>
         <li><span class="b-id">LLM09</span><span class="b-name">Misinformation</span><span class="b-track"><i style="width:92%"></i></span><span class="b-num">45/49</span></li>
         <li><span class="b-id">LLM10</span><span class="b-name">Unbounded Consumption</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">46/49</span></li>

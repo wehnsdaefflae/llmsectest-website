@@ -327,6 +327,8 @@ code, kbd { font-family: var(--mono); }
 .c-hit b { color: #2b2b2b; font-weight: 700 !important; }
 .c-held { background: #3f3f3f; border: 1px solid var(--line); }
 .c-held b { color: var(--dim); line-height: 1.05rem !important; }
+.c-unm { background: transparent; border: 1px dashed #4a4a4a; }
+.c-unm b { color: #5f5f5f; line-height: 1.05rem !important; }
 .c-na { background: repeating-linear-gradient(45deg, #313131 0 4px, #363636 4px 8px); }
 .c-na b { color: #555; }
 .strip-legend { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: -1.2rem 0 1.6rem; padding: 0; }

@@ -46,10 +46,10 @@
         document it just retrieved. It'll repeat a key you told it to keep. It'll act on an authorisation
         the caller just typed in.<br><br>
         LLMSecTest attacks your running app for all ten <strong>OWASP LLM Top&nbsp;10</strong> categories
-        and tells you what it got out. MIT-licensed, pre-alpha, built in the open.
+        and tells you what it got out. MIT-licensed, on PyPI, built in the open.
       </p>
       <div class="hero-cta">
-        <code>pip install "git+https://github.com/wehnsdaefflae/llmsectest"</code>
+        <code>pip install llmsectest</code>
         <a class="btn" href="#quickstart">Run your first scan&nbsp;&raquo;</a>
       </div>
     </div>
@@ -84,12 +84,12 @@
       <div class="qs-intro">
         <p class="label">Quick-start</p>
         <h2>Get a scan running in seconds.</h2>
-        <p>Install from source while it's pre-alpha. Point it at a model or at your running app.
+        <p>One line to install, then point it at a model or at your running app.
         Read the SARIF. There's a full walkthrough in the <a href="https://docs.llmsec.dev">docs</a>.</p>
       </div>
       <div class="terminal" aria-label="Quick-start commands">
         <div class="term-bar"><i></i><i></i><i></i><span>bash</span></div>
-        <pre class="term-body"><code><span class="p">~ $</span> pip install <span class="com">"git+https://github.com/wehnsdaefflae/llmsectest"</span>
+        <pre class="term-body"><code><span class="p">~ $</span> pip install <span class="com">llmsectest</span>
 <span class="p">~ $</span> llmsectest --target anthropic:claude-3-5-haiku
 <span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat   <span class="com"># your live app</span>
 <span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat \

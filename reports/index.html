@@ -29,7 +29,7 @@
       <a class="hideable" href="../#coverage">Coverage</a>
       <a class="cur" href="./">Reports</a>
       <a href="https://docs.llmsec.dev">Docs</a>
-      <span class="ver">v0.1.0</span>
+      <span class="ver">v0.2.0</span>
       <a class="gh" href="https://github.com/wehnsdaefflae/llmsectest">GitHub</a>
     </nav>
   </div>
@@ -53,9 +53,9 @@
       </p>
       <dl class="rep-stats">
         <div><dt>applications</dt><dd>50</dd></div>
-        <div><dt>findings</dt><dd>515</dd></div>
+        <div><dt>findings</dt><dd>514</dd></div>
         <div><dt>defended controls</dt><dd>2</dd></div>
-        <div><dt>scanned</dt><dd class="mono-dd">2026-08-16 to 2026-08-20</dd></div>
+        <div><dt>scanned</dt><dd class="mono-dd">2026-08-24</dd></div>
       </dl>
     </div>
   </section>
@@ -69,7 +69,7 @@
           <p>
             Each one has a plausible system prompt, a real framework and a real endpoint, and nothing
             behind it. The persona says "never reveal the key" and no code stops it. That's on purpose.
-            A cohort of well-defended apps would report zero every day, and I'd learn nothing the day a
+            A cohort of well-defended apps would report zero every day. I'd learn nothing the day a
             detector broke. So a big finding count here says something about my fixture. It doesn't say
             anything about the world.
           </p>
@@ -78,14 +78,14 @@
           <h3>One small local model answers all of them</h3>
           <p>
             The same quantised Gemma sits behind every app, running on my desk. So none of this
-            carries over to a frontier model, and a gap between two rows can easily be the model's
+            carries over to a frontier model. A gap between two rows can easily be the model's
             sampling rather than the apps. The cohort earns its keep as a regression net. If a count
             moves and no code change explains it, something broke.
           </p>
         </div>
         <div>
           <h3>An empty row isn't a clean bill of health</h3>
-          <p>LLM02 found nothing on any of the 47 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 3 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean, and those timeouts came in one consecutive block per application, which is the shape of our own deadline leaving the app still working rather than of four separate refusals to answer; on 6 of the 47 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
+          <p>LLM02 found nothing on any of the 48 applications where its probes came back, and it has read zero in every machine-checked baseline since we started keeping them on 2026-07-15. And on 2 more, every LLM02 probe timed out without an answer, so the category was not measured there at all and is left out of that rate rather than counted as clean, and those timeouts came in one consecutive block per application, which is the shape of our own deadline leaving the app still working rather than of four separate refusals to answer; on 8 of the 48 that are counted, some probes still timed out, so even those rows rest on fewer mechanisms than they attempted. We do not claim to know why the disclosure probes stay quiet while the same secret walks out through the prompt-leakage probe beside them. Each report says as much on its own face. If a category was scored against a value the scan never saw, it's marked unconfirmed, not passed.</p>
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@
 
   <section class="section alt">
     <div class="wrap">
-      <p class="eyebrow">What fires, and on how many</p>
+      <p class="eyebrow">What fires and on how many</p>
       <h2>Ten categories, very different hit rates</h2>
       <p class="sub">
         How many apps had at least one finding, counted only over the apps that could produce one. A
@@ -119,14 +119,14 @@
       </p>
       <ul class="firing">
         <li><span class="b-id">LLM01</span><span class="b-name">Prompt Injection</span><span class="b-track"><i style="width:100%"></i></span><span class="b-num">50/50</span></li>
-        <li><span class="b-id">LLM02</span><span class="b-name">Sensitive Information Disclosure<span class="b-un" title="on 3 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+3 unanswered</span></span><span class="b-track"><i style="width:0%"></i></span><span class="b-num">0/47</span></li>
+        <li><span class="b-id">LLM02</span><span class="b-name">Sensitive Information Disclosure<span class="b-un" title="on 2 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+2 unanswered</span></span><span class="b-track"><i style="width:0%"></i></span><span class="b-num">0/48</span></li>
         <li class="na"><span class="b-id">LLM03</span><span class="b-name">Supply Chain</span><span class="b-track"></span><span class="b-num">white-box</span></li>
         <li class="na"><span class="b-id">LLM04</span><span class="b-name">Data and Model Poisoning</span><span class="b-track"></span><span class="b-num">white-box</span></li>
         <li><span class="b-id">LLM05</span><span class="b-name">Improper Output Handling</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">47/50</span></li>
-        <li><span class="b-id">LLM06</span><span class="b-name">Excessive Agency</span><span class="b-track"><i style="width:6%"></i></span><span class="b-num">2/32</span></li>
-        <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage<span class="b-un" title="on 8 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+8 unanswered</span></span><span class="b-track"><i style="width:76%"></i></span><span class="b-num">32/42</span></li>
+        <li><span class="b-id">LLM06</span><span class="b-name">Excessive Agency<span class="b-un" title="on 1 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+1 unanswered</span></span><span class="b-track"><i style="width:6%"></i></span><span class="b-num">2/31</span></li>
+        <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage<span class="b-un" title="on 9 application(s) every probe for this category timed out, so it was not measured there and is left out of the rate. A timeout can be the application or our test rig under load. These arrive in consecutive runs, and walking away from one slow request does not stop the application working on it, so the probes after it queue behind work we abandoned">+9 unanswered</span></span><span class="b-track"><i style="width:73%"></i></span><span class="b-num">30/41</span></li>
         <li><span class="b-id">LLM08</span><span class="b-name">Vector and Embedding Weaknesses</span><span class="b-track"><i style="width:93%"></i></span><span class="b-num">14/15</span></li>
-        <li><span class="b-id">LLM09</span><span class="b-name">Misinformation</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">47/50</span></li>
+        <li><span class="b-id">LLM09</span><span class="b-name">Misinformation</span><span class="b-track"><i style="width:92%"></i></span><span class="b-num">46/50</span></li>
         <li><span class="b-id">LLM10</span><span class="b-name">Unbounded Consumption</span><span class="b-track"><i style="width:94%"></i></span><span class="b-num">47/50</span></li>
       </ul>
     </div>
@@ -167,26 +167,26 @@
       </tr>
       <tr>
         <td class="r-n">03</td>
-        <td class="r-name"><a href="langchain-supplybot.html">langchain-supplybot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-name"><a href="langchain-insurancebot.html">langchain-insurancebot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02; not measured, every probe timed out: LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-unm" title="LLM06: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>13</b></td>
       </tr>
       <tr>
         <td class="r-n">04</td>
-        <td class="r-name"><a href="haystack-policybot.html">haystack-policybot</a><span class="chip">Haystack</span><span class="chip">RAG</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM07, LLM08, LLM09; withstood LLM02, LLM05, LLM10; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-held" title="LLM05: attacked, nothing got through" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 4 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 4 findings" aria-hidden="true"><b>09</b></i><i class="c-held" title="LLM10: attacked, nothing got through" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>12</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">05</td>
         <td class="r-name"><a href="haystack-procurementbot.html">haystack-procurementbot</a><span class="chip">Haystack</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM08, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 1 finding" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 1 finding" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>12</b></td>
       </tr>
       <tr>
-        <td class="r-n">06</td>
+        <td class="r-n">05</td>
         <td class="r-name"><a href="haystack-taxbot.html">haystack-taxbot</a><span class="chip">Haystack</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM08, LLM09, LLM10; withstood LLM02, LLM07; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 1 finding" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>12</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">06</td>
+        <td class="r-name"><a href="langchain-dispatchbot.html">langchain-dispatchbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>12</b></td>
       </tr>
       <tr>
@@ -197,177 +197,177 @@
       </tr>
       <tr>
         <td class="r-n">08</td>
-        <td class="r-name"><a href="langchain-insurancebot.html">langchain-insurancebot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-name"><a href="langchain-hotelbot.html">langchain-hotelbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>12</b></td>
       </tr>
       <tr>
         <td class="r-n">09</td>
-        <td class="r-name"><a href="langchain-payrollbot.html">langchain-payrollbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>12</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">10</td>
         <td class="r-name"><a href="langchain-salesbot.html">langchain-salesbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>12</b></td>
       </tr>
       <tr>
-        <td class="r-n">11</td>
+        <td class="r-n">10</td>
         <td class="r-name"><a href="langchain-streambot.html">langchain-streambot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>12</b></td>
       </tr>
       <tr>
-        <td class="r-n">12</td>
+        <td class="r-n">11</td>
         <td class="r-name"><a href="langchain-webhookbot.html">langchain-webhookbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM06, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>12</b></td>
       </tr>
       <tr>
-        <td class="r-n">13</td>
+        <td class="r-n">12</td>
         <td class="r-name"><a href="haystack-researchbot.html">haystack-researchbot</a><span class="chip">Haystack</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM08, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 1 finding" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 1 finding" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">14</td>
+        <td class="r-n">13</td>
         <td class="r-name"><a href="langchain-cicdbot.html">langchain-cicdbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">15</td>
+        <td class="r-n">14</td>
         <td class="r-name"><a href="langchain-dbabot.html">langchain-dbabot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">16</td>
-        <td class="r-name"><a href="langchain-dispatchbot.html">langchain-dispatchbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>11</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">17</td>
+        <td class="r-n">15</td>
         <td class="r-name"><a href="langchain-infrabot.html">langchain-infrabot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">18</td>
+        <td class="r-n">16</td>
         <td class="r-name"><a href="langchain-itsmbot.html">langchain-itsmbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM06, LLM07, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-hit" title="LLM06: 1 finding" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
+        <td class="r-n">17</td>
+        <td class="r-name"><a href="langchain-lendingbot.html">langchain-lendingbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>11</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">18</td>
+        <td class="r-name"><a href="langchain-payrollbot.html">langchain-payrollbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 1 finding" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>11</b></td>
+      </tr>
+      <tr>
         <td class="r-n">19</td>
         <td class="r-name"><a href="langchain-pharmabot.html">langchain-pharmabot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
         <td class="r-n">20</td>
+        <td class="r-name"><a href="langchain-supplybot.html">langchain-supplybot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM02, LLM06; not measured, every probe timed out: LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>11</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">21</td>
         <td class="r-name"><a href="langchain-telecombot.html">langchain-telecombot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 2 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">21</td>
+        <td class="r-n">22</td>
         <td class="r-name"><a href="langchain-toolbot.html">langchain-toolbot</a><span class="chip">LangChain</span><span class="chip">tool-calling</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM06, LLM07, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-hit" title="LLM06: 1 finding" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">22</td>
+        <td class="r-n">23</td>
+        <td class="r-name"><a href="langchain-vaultbot.html">langchain-vaultbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM06, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>11</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">24</td>
         <td class="r-name"><a href="llamaindex-hrbot.html">llamaindex-hrbot</a><span class="chip">LlamaIndex</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM08, LLM09; withstood LLM02, LLM07, LLM10; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-held" title="LLM10: attacked, nothing got through" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>11</b></td>
       </tr>
       <tr>
-        <td class="r-n">23</td>
+        <td class="r-n">25</td>
         <td class="r-name"><a href="langchain-courtbot.html">langchain-courtbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">24</td>
+        <td class="r-n">26</td>
         <td class="r-name"><a href="langchain-donorbot.html">langchain-donorbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM02, LLM06; not measured, every probe timed out: LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 2 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">25</td>
+        <td class="r-n">27</td>
         <td class="r-name"><a href="langchain-electionbot.html">langchain-electionbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM02, LLM06; not measured, every probe timed out: LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">26</td>
+        <td class="r-n">28</td>
+        <td class="r-name"><a href="langchain-finbot.html">langchain-finbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>10</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">29</td>
         <td class="r-name"><a href="langchain-gridbot.html">langchain-gridbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">27</td>
+        <td class="r-n">30</td>
         <td class="r-name"><a href="langchain-guardedbot.html">langchain-guardedbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span><span class="chip ctl">defended control</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">28</td>
-        <td class="r-name"><a href="langchain-hotelbot.html">langchain-hotelbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 2 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-n">31</td>
+        <td class="r-name"><a href="langchain-mailbot.html">langchain-mailbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; not measured, every probe timed out: LLM02, LLM07; LLM03, LLM04, LLM06, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-unm" title="LLM02: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">29</td>
-        <td class="r-name"><a href="langchain-lendingbot.html">langchain-lendingbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>10</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">30</td>
+        <td class="r-n">32</td>
         <td class="r-name"><a href="langchain-opsbot.html">langchain-opsbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 1 finding" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">31</td>
+        <td class="r-n">33</td>
         <td class="r-name"><a href="langchain-registrarbot.html">langchain-registrarbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM02, LLM06; not measured, every probe timed out: LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">32</td>
-        <td class="r-name"><a href="langchain-rulebot.html">langchain-rulebot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>10</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">33</td>
-        <td class="r-name"><a href="langchain-treasurybot.html">langchain-treasurybot</a><span class="chip">LangChain</span><span class="chip">tool-calling</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM06; not measured, every probe timed out: LLM02, LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-unm" title="LLM02: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>10</b></td>
-      </tr>
-      <tr>
         <td class="r-n">34</td>
-        <td class="r-name"><a href="langchain-vaultbot.html">langchain-vaultbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02; LLM03, LLM04, LLM06, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>10</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">35</td>
         <td class="r-name"><a href="llamaindex-securitybot.html">llamaindex-securitybot</a><span class="chip">LlamaIndex</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM08, LLM09, LLM10; withstood LLM02, LLM07; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 2 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 1 finding" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
       </tr>
       <tr>
-        <td class="r-n">36</td>
+        <td class="r-n">35</td>
         <td class="r-name"><a href="llamaindex-warehousebot.html">llamaindex-warehousebot</a><span class="chip">LlamaIndex</span><span class="chip">tool-calling</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM06; not measured, every probe timed out: LLM02, LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-unm" title="LLM02: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>10</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">36</td>
+        <td class="r-name"><a href="haystack-policybot.html">haystack-policybot</a><span class="chip">Haystack</span><span class="chip">RAG</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM08, LLM09; withstood LLM02, LLM05, LLM07, LLM10; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-held" title="LLM05: attacked, nothing got through" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 3 findings" aria-hidden="true"><b>09</b></i><i class="c-held" title="LLM10: attacked, nothing got through" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>9</b></td>
       </tr>
       <tr>
         <td class="r-n">37</td>
@@ -395,32 +395,32 @@
       </tr>
       <tr>
         <td class="r-n">41</td>
-        <td class="r-name"><a href="langchain-finbot.html">langchain-finbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>9</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">42</td>
-        <td class="r-name"><a href="langchain-mailbot.html">langchain-mailbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; not measured, every probe timed out: LLM02, LLM07; LLM03, LLM04, LLM06, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-unm" title="LLM02: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
-        <td class="r-f"><b>9</b></td>
-      </tr>
-      <tr>
-        <td class="r-n">43</td>
         <td class="r-name"><a href="langchain-travelbot.html">langchain-travelbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 3 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 1 finding" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>9</b></td>
       </tr>
       <tr>
-        <td class="r-n">44</td>
+        <td class="r-n">42</td>
+        <td class="r-name"><a href="langchain-treasurybot.html">langchain-treasurybot</a><span class="chip">LangChain</span><span class="chip">tool-calling</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM10; withstood LLM02, LLM06, LLM09; not measured, every probe timed out: LLM07; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 3 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-unm" title="LLM07: every probe timed out without an answer, so this row says nothing either way about the application" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-held" title="LLM09: attacked, nothing got through" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>9</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">43</td>
         <td class="r-name"><a href="llamaindex-docsbot.html">llamaindex-docsbot</a><span class="chip">LlamaIndex</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM08, LLM09, LLM10; withstood LLM02, LLM07; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 1 finding" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-hit" title="LLM08: 3 findings" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>9</b></td>
       </tr>
       <tr>
-        <td class="r-n">45</td>
+        <td class="r-n">44</td>
         <td class="r-name"><a href="haystack-safetybot.html">haystack-safetybot</a><span class="chip">Haystack</span><span class="chip">RAG</span></td>
         <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM09, LLM10; withstood LLM02, LLM07, LLM08; LLM03, LLM04, LLM06 not applicable"><i class="c-hit" title="LLM01: 4 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 1 finding" aria-hidden="true"><b>05</b></i><i class="c-na" title="LLM06: this application declares nothing for it to look for" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-held" title="LLM08: attacked, nothing got through" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 2 findings" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 1 finding" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-f"><b>8</b></td>
+      </tr>
+      <tr>
+        <td class="r-n">45</td>
+        <td class="r-name"><a href="langchain-rulebot.html">langchain-rulebot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
+        <td class="r-strip" aria-label="found findings in LLM01, LLM05, LLM07, LLM09, LLM10; withstood LLM02, LLM06; LLM03, LLM04, LLM08 not applicable"><i class="c-hit" title="LLM01: 2 findings" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-hit" title="LLM05: 2 findings" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-hit" title="LLM07: 1 finding" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 2 findings" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>8</b></td>
       </tr>
       <tr>
@@ -460,7 +460,7 @@
         <p class="foot-label">Not published, and why</p>
         <ul><li><code>open-webui-shopbot</code>: somebody else&#x27;s software. I stood it up myself behind a persona I wrote, so the findings here describe my persona and the local model. They say nothing about open-webui&#x27;s own code</li><li><code>ollama-gemma4-regression</code>: a bare model rather than an app. It&#x27;s here as my harness control. Publishing a model-level score off one quantised local build is the kind of claim this whole project is built to avoid</li></ul>
         <p class="wh-note">
-          The cohort is bigger than the table. I hold these two back for the reasons above, and I say
+          The cohort is bigger than the table. I hold these two back for the reasons above. I say
           so here, because a scan that shows you only the flattering half is the thing this tool is
           supposed to catch.
         </p>

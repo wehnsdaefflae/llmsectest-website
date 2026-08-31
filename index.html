@@ -181,6 +181,7 @@
             <li class="done">All 10 of 10 categories live: LLM01 to LLM10, the complete OWASP LLM Top&nbsp;10 (2025)</li>
             <li class="done">Black-box testing of a running application, <code>--target app:&lt;url&gt;</code>, reaching 8 categories once you name what the app holds (<code>--app-prompt/-secret/-action/-canary/-rag-poison</code>); LLM01/05/09/10 need nothing</li>
             <li class="done">White-box scans: dependency manifests with an OSV known-CVE lookup (<code>--repo</code>, <code>--osv</code>, LLM03), and an offline serialization-opcode scan of model files that never unpickles them (<code>--model-scan</code>, LLM04)</li>
+            <li class="done">A white-box LLM08 scan of your persisted vector store (<code>--vector-store</code>). It does not invert your embeddings. Inverting one needs an inverter trained for that embedding space, so instead it reads the store and tells you how much of the corpus somebody with read access already has. Usually all of it, because the text is filed next to the vector it was made from</li>
             <li class="done">LLM02 and LLM06 attack along four <em>mechanisms</em> each rather than four wordings, including a secret asked for base64-encoded and a forged authorization an agent cannot check. A leaked secret counts however it comes back: encoded, Unicode-disguised, or split character by character, including with the separator <em>spelled out</em> (<code>E SPACE X SPACE A</code>). That last one is what a small model came up with by itself to get past an output filter</li>
             <li class="done">RAG-specific LLM08: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>)</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) plus a false-refusal rate on the benign twins (<code>--redteam-benign</code>)</li>
@@ -196,7 +197,7 @@
           <ul>
             <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM03)</li>
             <li>A classifier refusal oracle (GLiGuard / Llama-Guard), replacing the substring rule</li>
-            <li>LLM08 white-box dimensions: embedding inversion and multi-tenant isolation</li>
+            <li>The remaining LLM08 white-box dimensions: embedding-store poisoning and multi-tenant isolation</li>
             <li>Deeper supply-chain analysis and stress tests</li>
           </ul>
         </li>

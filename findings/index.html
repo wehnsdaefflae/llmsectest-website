@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Findings · LLMSecTest</title>
+<meta name="description" content="Results from the daily LLMSecTest cohort that are worth more than their number, each with the measurement behind it and the command that reproduces it.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="logo" href="../" aria-label="LLMSecTest home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#ffcc00"/>
+        <path d="M10 10l6 6-6 6" fill="none" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="17.5" y="19" width="6.6" height="3.2" rx="1.6" fill="#2b2b2b"/>
+      </svg>
+      llmsectest
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="hideable" href="../#approach">Approach</a>
+      <a class="hideable" href="../#coverage">Coverage</a>
+      <a href="../reports/">Reports</a>
+      <a href="https://docs.llmsec.dev">Docs</a>
+      <span class="ver">v0.2.0</span>
+      <a class="gh" href="https://github.com/wehnsdaefflae/llmsectest">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="rep-hero">
+    <div class="wrap">
+      <p class="eyebrow">Findings</p>
+      <h1>What the scans found.</h1>
+      <p class="lede">
+        I run LLMSecTest against a standing cohort of chat applications every working day. Most of what
+        comes out is a number on <a href="../reports/">the reports page</a>. Now and then a run answers
+        a question worth more than its number. Those get written up here, with the measurement and the
+        command that reproduces it.<br><br>
+        Each page says what it is and what it is not. The cohort is mostly applications I built myself,
+        so a rate over it is a statement about my prompts; where a result reproduced on somebody else's
+        software, the page says so and names what was withheld.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Written up so far</p>
+      <h2>Two</h2>
+
+      <p class="sub" style="margin-top:1.6rem">
+        <a class="more" href="secrets-leave-through-the-prompt.html">Your secret-disclosure test
+        passed. The secret still left. &raquo;</a><br>
+        Across 52 applications the probes whose job is sensitive-information disclosure produced
+        <b>one</b> finding. Thirty-two of the same applications handed over the planted credential
+        anyway, thirty of them while answering a request for their own instructions.
+      </p>
+
+      <p class="sub" style="margin-top:1.6rem">
+        <a class="more" href="hash-filter-boundaries.html">A hash filter protects your secret only
+        where the model put a space. &raquo;</a><br>
+        An output filter holding only the SHA-256 of the credential has to decide where the credential
+        starts and stops before it can hash anything. Twelve spellings of one value: seven pass the
+        naive level, five pass the expensive one, and four of those are out of reach of any digest.
+      </p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <p class="eyebrow">Reproduce any of it</p>
+      <h2>There is no key and no account</h2>
+      <div class="code-panel">
+        <p><code>pip install llmsectest</code></p>
+        <p><code>llmsectest --target app:http://localhost:8000/chat \<br>
+        &nbsp;&nbsp;--app-prompt system-prompt.txt \<br>
+        &nbsp;&nbsp;--app-secret 'YOUR-CANARY-VALUE'</code></p>
+      </div>
+      <p class="sub">
+        Every page here ends with the command that produced it. The
+        <a href="https://docs.llmsec.dev/quickstart/">quickstart</a> goes from nothing to a rendered
+        report in about a minute.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="logo">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#ffcc00"/>
+          <path d="M10 10l6 6-6 6" fill="none" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="17.5" y="19" width="6.6" height="3.2" rx="1.6" fill="#2b2b2b"/>
+        </svg>
+        llmsectest
+      </span>
+      <p>An open-source security testing framework for LLM applications. MIT-licensed.</p>
+    </div>
+    <div class="foot-fund">
+      <p class="foot-label">Funding</p>
+      <p>
+        Developed with support from the <a href="https://prototypefund.de">Prototype Fund</a>
+        (FKZ&nbsp;16IS26S10). Gefördert vom Bundesministerium für Forschung, Technologie und
+        Raumfahrt (BMFTR) aufgrund eines Beschlusses des Deutschen Bundestages; Förderrichtlinie
+        umgesetzt von der Open Knowledge Foundation Deutschland, betreut vom Projektträger
+        VDI/VDE-IT.
+      </p>
+    </div>
+    <div class="foot-links">
+      <p class="foot-label">Links</p>
+      <a href="https://github.com/wehnsdaefflae/llmsectest">Code (GitHub)</a>
+      <a href="https://docs.llmsec.dev">Documentation</a>
+      <a href="https://docs.llmsec.dev/changelog/">Changelog</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP LLM Top 10</a>
+    </div>
+  </div>
+  <div class="foot-credit">
+    <div class="fund-logos">
+      <img src="../assets/bmftr-funded-by-en.png" class="logo-bmftr"
+           alt="With funding from the Federal Ministry of Research, Technology and Space (BMFTR)">
+      <span class="fund-rule" aria-hidden="true"></span>
+      <img src="../assets/prototype-fund-en.png" class="logo-ptf"
+           alt="Supported by the Prototype Fund">
+    </div>
+  </div>
+  <div class="foot-base">
+    <div class="wrap">
+      <span>© 2026 under the terms of the MIT License.</span>
+      <span class="mono">llmsec.dev · pre-alpha, building toward v1.0</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

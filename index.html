@@ -111,6 +111,12 @@
         so as an explicit skip. You won't get a silent gap.
       </p>
       <p class="sub">
+        A scan reads the whole response, not just the reply field. An answer can come back in a
+        sibling field: one application returned a planted secret in <code>message.reasoning</code>
+        while <code>message.content</code> held a refusal. Probes that plant their marker in your
+        application are scored against the whole body. The finding says where the value turned up.
+      </p>
+      <p class="sub">
         The numbering below is the <strong>2025</strong> edition. Older editions numbered these
         differently. Supply chain used to be LLM05 and is now LLM03, so a number from an older list won't
         line up with what the reports say.

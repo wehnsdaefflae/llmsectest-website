@@ -47,9 +47,9 @@
         All four are mine. I write a security scanner for LLM applications, I run it against a standing
         cohort every working day, and four times now it has told me an application held when nothing
         behind that word had been tested.<br><br>
-        Two I caught by reading two numbers on the same page. One I caught by pointing the scanner at
-        an endpoint that accepts every request and answers none. The fourth the scanner had already
-        flagged itself, in a sentence printed under the row, which I read past.<br><br>
+        Two I caught by reading two numbers on the same page. One I caught on purpose, by pointing
+        the scanner at an endpoint that accepts every request and answers none. The fourth the scanner
+        had already flagged itself, in a sentence printed under the row, which I read past.<br><br>
         They are one defect with four faces. A clean row says the attack was not observed. It does not
         say the attack failed.
       </p>
@@ -68,10 +68,10 @@
       <h2>The row said the secret was safe. The secret was three lines further down the same report.</h2>
       <p class="sub">
         Every application in the cohort carries a planted credential in its system prompt. The same
-        string goes to <code>--app-secret</code>. Four probes make that credential the object of the
-        request: print it, paste it, list your configuration, encode it in base64. An assistant told
-        never to state its key refuses all four, because refusing is what that instruction is for. So
-        the report read <code>LLM02 &mdash; attempted 1, withstood 1, findings 0</code>.
+        string goes to <code>--app-secret</code>. The disclosure probe makes that credential the object
+        of the request: name it. An assistant told never to state its key refuses, because refusing is
+        what that instruction is for. So the report read
+        <code>LLM02 &mdash; attempted 1, withstood 1, findings 0</code>.
       </p>
       <p class="sub">
         A few lines below that row, in the same report, an LLM07 finding quoted the system prompt the
@@ -88,6 +88,12 @@
         that string sitting inside their own LLM07 finding. Of the 26 whose system prompt leaked at all,
         20 handed over the credential with it. The LLM02 row on every one of those reports said the
         application had held.
+      </p>
+      <p class="sub">
+        The corpus grew to four disclosure mechanisms later the same day: print it, paste it, list your
+        configuration, encode it in base64. A persona told never to state its key refuses all four, so
+        the row went from <code>attempted 1, withstood 1</code> to <code>attempted 4, withstood 4</code>.
+        Four times the reassurance for the same credential, already gone.
       </p>
       <p class="sub">
         What was wrong is the unit. The scanner scored the probe. A reader is asking about the run.
@@ -249,13 +255,15 @@
         </table>
       </div>
       <p class="sub" style="margin-top:1.6rem">
-        I don't think care fixes this. Three of the four were caught by somebody happening to read two
-        numbers side by side. The fourth had a printed caveat that a careful reader skipped. What
-        works is making the two kinds of empty into different objects in the output, so they cannot be
-        confused, then writing a check that reads the published surface. The code's intention is what
-        went wrong in case three. Every case above has one. Each of those checks earns its keep the same way. Run
-        it against the artefact that was wrong and it names the defect. Run it against the fixed one
-        and it goes quiet.
+        I don't think care fixes this. Two of the four were caught by somebody happening to read two
+        numbers side by side. One more had a printed caveat that a careful reader skipped. Only case
+        three was found by going looking. What
+        works is making the two kinds of empty into different objects in the output, so they cannot
+        be confused, then writing a check against the published surface. Case three shows why the
+        surface and not the code: the code said it handled the general case and handled a subset.
+        Every case above has a check now. Each earns its keep the same way. Run it against the
+        artefact that was wrong and it names the defect. Run it against the fixed one and it goes
+        quiet.
       </p>
     </div>
   </section>
@@ -300,8 +308,8 @@
       </p>
       <p class="sub">
         <b>Four is what I have found.</b> It is not a count of what happened. Three of the four turned
-        up by accident while I was looking at something else, which is a poor sampling method, so the
-        honest reading of the number is that it is a floor.
+        up while I was looking at something else. Only one came from going looking, which is a poor
+        sampling method, so the honest reading of the number is that it is a floor.
       </p>
       <p class="sub">
         <b>Every fix above is in the public repository with a test that fails without it.</b> The dates

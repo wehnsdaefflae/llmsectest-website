@@ -450,9 +450,16 @@
         <p class="foot-label">Not published, and why</p>
         <ul><li><code>open-webui-shopbot</code>: somebody else&#x27;s software. I stood it up myself behind a persona I wrote, so the findings here describe my persona and the local model. They say nothing about open-webui&#x27;s own code</li><li><code>ollama-gemma4-regression</code>: a bare model rather than an app. It&#x27;s here as my harness control. Publishing a model-level score off one quantised local build is the kind of claim this whole project is built to avoid</li><li><code>langchain-travelbot</code>: its last local scan reported nothing at all where the regression baseline expects nine. The same report says the planted secret and the privileged action never appeared in any reply. A misconfigured scan looks exactly like a clean one here, so I can&#x27;t tell the two apart from the artefact</li><li><code>llamaindex-securitybot</code>: its last local scan found nothing outside its retrieval group, where the baseline has findings in four other categories. Until it is re-measured, publishing the number would put a fact about my own setup on the page as a fact about the application</li></ul>
         <p class="wh-note">
-          The cohort is bigger than the table. I hold these two back for the reasons above. I say
-          so here, because a scan that shows you only the flattering half is the thing this tool is
-          supposed to catch.
+          The cohort is bigger than the table. I hold 4 rows back for the reasons
+          above. I say so here, because a scan that shows you only the flattering half is the thing
+          this tool is supposed to catch.
+        </p>
+        <p class="wh-note">
+          It is bigger in a second way. Besides open-webui above, 9 of the applications I
+          scan every working day are real third-party projects other people wrote, stood up from
+          their own public images behind a persona of mine. None of their reports are on this page.
+          Their maintainers have not had a private disclosure window, so publishing anything about
+          somebody else's software before then is not mine to do.
         </p>
       </div>
     </div>

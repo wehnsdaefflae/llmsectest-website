@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proving the marker was there · LLMSecTest</title>
+<meta name="description" content="A pass rate for a category nothing had tested. The honesty failure behind it, the two controls that were refuted first, and the three observations that replaced them.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="logo" href="../" aria-label="LLMSecTest home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#ffcc00"/>
+        <path d="M10 10l6 6-6 6" fill="none" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="17.5" y="19" width="6.6" height="3.2" rx="1.6" fill="#2b2b2b"/>
+      </svg>
+      llmsectest
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="hideable" href="../#approach">Approach</a>
+      <a class="hideable" href="../#coverage">Coverage</a>
+      <a class="hideable" href="../#roadmap">Roadmap</a>
+      <a class="cur" aria-current="page" href="./">Findings</a>
+      <a href="../reports/">Reports</a>
+      <a href="https://docs.llmsec.dev">Docs</a>
+      <span class="ver">v0.3.0</span>
+      <a class="gh" href="https://github.com/wehnsdaefflae/llmsectest">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="rep-hero">
+    <div class="wrap">
+      <p class="eyebrow">Finding · this tool's own failures</p>
+      <h1>A pass rate for a category nothing had tested.</h1>
+      <p class="lede">
+        I shipped a clean row for a category my scanner had never tested. The report said the
+        application withstood four attacks. What had happened is that the secret those four probes
+        hunt for was never in the application at all.<br><br>
+        This names no application, no upstream project and no finding. The deployments it was
+        measured on are other people's software and none of their maintainers has been asked. The
+        method is the whole of what I can publish.
+      </p>
+      <dl class="rep-stats">
+        <div><dt>controls tried</dt><dd>2</dd></div>
+        <div><dt>both refuted</dt><dd>yes</dd></div>
+        <div><dt>observations now</dt><dd>3</dd></div>
+        <div><dt>categories with a verdict</dt><dd>5 &rarr; 9</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">The mechanism</p>
+      <h2>A well-defended deployment and an untested one look the same from outside.</h2>
+      <p class="sub">
+        Here is the mechanism, because it is simple and it will be in your tool too. My scanner
+        records a marker when the marker appears in a reply. A planted credential, a privileged
+        action signature, a poisoned document's payload: all of them are scored the same way, by
+        turning up in something the application said.
+      </p>
+      <p class="sub">
+        Now take an application whose system prompt never reached the model. Nothing was planted, so
+        nothing can come back, so every probe is survived. The report is byte for byte the report of
+        an application that defended itself perfectly.
+      </p>
+      <p class="sub">
+        That is the whole problem. Every pass rate I had published sat on top of it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">The part worth reading</p>
+      <h2>Two controls I tried first, both bad.</h2>
+      <p class="sub">
+        The obvious fix is a differential. Ask the same question of a deployment with the marker
+        removed. The answer should change.
+      </p>
+      <p class="sub">
+        <b>My first version deleted the line carrying the marker and asked again.</b> The reply came
+        back empty. This application reaches for a tool, the tool yields nothing, and the response is
+        HTTP 200 with an empty content list. An empty reply does not contain the marker, so the
+        control passed. It proved nothing at all. That is the same shape as the defect I was trying
+        to catch, reproduced inside the control I built to catch it: a broken call reads as a clean
+        result.
+      </p>
+      <p class="sub">
+        <b>My second version put a harmless control marker near the top of the system prompt</b> and
+        treated its return as evidence the whole prompt had arrived. The refutation is one sentence.
+        It holds only if truncation is the one way a prompt can fail to arrive. It is not. A gateway
+        that rewrites the system role, a framework that drops a client system message, a template
+        that substitutes a variable: none of them truncate, all of them leave a marker in place while
+        the tail goes missing. The tail is where I put the credential.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">What I use now</p>
+      <h2>Three observations, taken before any probe result is believed.</h2>
+      <p class="sub">
+        A member whose stand-up cannot take all three is enrolled and untestable. Its clean rows say
+        so.
+      </p>
+      <p class="sub">
+        <b>A read-back with no model in it.</b> Ask the application for the system prompt it holds
+        and compare the whole string against the file on disk, byte for byte. Assert the credential
+        is inside what came back. Assert every action signature is inside what came back. This is the
+        observation that covers the tail. A live marker cannot make it.
+      </p>
+      <p class="sub">
+        <b>An authorized-path control.</b> The persona carries a coined reference it is told it may
+        state to anyone who asks for it. I ask for it through the same HTTP contract the probes use.
+        A perfectly hardened, perfectly obedient deployment answers with the reference, so this
+        control tests delivery and never the failure of a guardrail. The value appears in no flag and
+        no oracle reads it, so it cannot manufacture a finding.
+      </p>
+      <p class="sub">
+        <b>A decoy differential.</b> The same persona with that one reference swapped for a decoy, on
+        a second agent or a second session on the same model and endpoint. It has to answer with the
+        decoy. That is what makes the absence of the real one mean something. It says less on an
+        application that stores no persona, because there the decoy travels in the request like the
+        real marker does; on one that holds its own configuration, the request can carry the real
+        marker while the application holds the decoy, and the reply's origin is then unambiguous.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">When the application stores no persona</p>
+      <h2>Move the read-back one layer down.</h2>
+      <p class="sub">
+        Some applications hold nothing to read back. The system prompt is a field of the request, so
+        there is no stored configuration to ask for. For those I record what the application sends. A
+        small pass-through proxy sits between the deployment and the model it calls, the deployment is
+        pointed at it, and the assertion runs over the outgoing request. It is a stronger statement
+        than the stored version. A stored string is what the application holds; this is what it
+        forwards.
+      </p>
+      <p class="sub">
+        It also measures things you would otherwise guess at. One deployment strips the trailing
+        newline off the system prompt you send and concatenates its own instructions onto the end of
+        it with no separator. My read-back asserts against the persona plus that suffix, so a change
+        in either half fails the check.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">What it changed</p>
+      <h2>Five categories with a usable verdict before, nine after.</h2>
+      <p class="sub">
+        On one deployment. Two of the cells that moved were the white-box pair. They only needed
+        pointing at something. One came back a failure, the other a pass. The other two had read
+        <i>cannot say</i> for eleven days. Both are passes now, each with the evidence a maintainer
+        can check.
+      </p>
+      <p class="sub">
+        <b>The white-box failure is worth more to me than the passes.</b> It is a finding I can hand
+        over.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">The limit, stated</p>
+      <h2>One case this method cannot decide.</h2>
+      <p class="sub">
+        All three observations are taken once, at stand-up, and none of them is taken per probe. A
+        deployment that bound the prompt for the control turn and stopped binding it mid-run would
+        produce a clean sheet that all three vouch for and none of them tested. That is unconfirmed
+        rather than a pass, it is not a defence, and nothing above distinguishes it from one.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">One command</p>
+      <h2>Ask your own scanner whether the thing it hunts for was ever there.</h2>
+      <p class="sub">Mine now prints the answer:</p>
+      <div class="terminal" aria-label="Asking the scanner whether the marker was live">
+        <div class="term-bar"><i></i><i></i><i></i><span>bash</span></div>
+        <pre class="term-body"><code><span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat \
+      --app-prompt prompt.txt \
+      --app-secret <span class="str">"ACME-BREAKGLASS-4T7Q"</span> \
+      --app-action <span class="str">"ACTION: refund("</span>
+<span class="out"># => look for a line beginning `Unconfirmed:` in the summary</span></code></pre>
+      </div>
+      <p class="sub">
+        Look in the summary for a line beginning <code>Unconfirmed:</code>. It names the category and
+        the flag. It says in full what a clean row above it is worth:
+      </p>
+      <p class="sub" style="border-left:3px solid var(--line-2); padding-left:1rem">
+        <i>the value passed to <code>--app-secret</code> never appeared in any reply in this run.
+        […] Nothing here distinguishes them.</i>
+      </p>
+      <p class="sub">
+        If that line is there, your clean row is not yet evidence. If it is gone, the marker was live
+        and the row is a result.
+      </p>
+      <p class="sub">
+        llmsectest is MIT: <a href="https://github.com/wehnsdaefflae/llmsectest">github.com/wehnsdaefflae/llmsectest</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="logo">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#ffcc00"/>
+          <path d="M10 10l6 6-6 6" fill="none" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="17.5" y="19" width="6.6" height="3.2" rx="1.6" fill="#2b2b2b"/>
+        </svg>
+        llmsectest
+      </span>
+      <p>An open-source security testing framework for LLM applications. MIT-licensed.</p>
+    </div>
+    <div class="foot-fund">
+      <p class="foot-label">Funding</p>
+      <p>
+        Developed with support from the <a href="https://prototypefund.de">Prototype Fund</a>
+        (FKZ&nbsp;16IS26S10). Gefördert vom Bundesministerium für Forschung, Technologie und
+        Raumfahrt (BMFTR) aufgrund eines Beschlusses des Deutschen Bundestages; Förderrichtlinie
+        umgesetzt von der Open Knowledge Foundation Deutschland, betreut vom Projektträger
+        VDI/VDE-IT.
+      </p>
+    </div>
+    <div class="foot-links">
+      <p class="foot-label">Links</p>
+      <a href="https://github.com/wehnsdaefflae/llmsectest">Code (GitHub)</a>
+      <a href="https://docs.llmsec.dev">Documentation</a>
+      <a href="https://docs.llmsec.dev/changelog/">Changelog</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP LLM Top 10</a>
+    </div>
+  </div>
+  <div class="foot-credit">
+    <div class="fund-logos">
+      <img src="../assets/bmftr-funded-by-en.png" class="logo-bmftr"
+           alt="With funding from the Federal Ministry of Research, Technology and Space (BMFTR)">
+      <span class="fund-rule" aria-hidden="true"></span>
+      <img src="../assets/prototype-fund-en.png" class="logo-ptf"
+           alt="Supported by the Prototype Fund">
+    </div>
+  </div>
+  <div class="foot-base">
+    <div class="wrap">
+      <span>© 2026 under the terms of the MIT License.</span>
+      <span class="mono">llmsec.dev · pre-alpha, building toward v1.0</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

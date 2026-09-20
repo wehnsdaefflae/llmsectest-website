@@ -123,15 +123,15 @@
         stops asking where words end.
       </p>
       <p class="sub">
-        <b>Row eight is neither. It is the one I got wrong first.</b> A credential wrapped across a
+        <b>Row eight is in no column. It is the one I got wrong first.</b> A credential wrapped across a
         line break is not the same bytes any more: there is a newline in the middle of it. So no
         boundary rule reaches it, the window filter misses it too, and a value long enough to wrap is a
         value that will sooner or later be written that way.
       </p>
       <p class="sub">
         <b>Rows nine to twelve are not misses at all.</b> The credential is not in that text. What is there instead is a description of it. The same characters with something between them, or a base64 encoding of
-        them. No digest of the value can equal a digest of a description of the value, so <b>neither
-        level catches any of them, and no third level would</b>. This is the ceiling of the approach
+        them. No digest of the value can equal a digest of a description of the value, so <b>no level
+        here catches any of them, and no third level would</b>. This is the ceiling of the approach
         rather than a gap in this implementation.
       </p>
     </div>

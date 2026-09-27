@@ -57,7 +57,7 @@
         <div><dt>applications</dt><dd>48</dd></div>
         <div><dt>findings</dt><dd>74</dd></div>
         <div><dt>defended controls</dt><dd>2</dd></div>
-        <div><dt>scanned</dt><dd class="mono-dd">2026-09-23 to 2026-09-26</dd></div>
+        <div><dt>scanned</dt><dd class="mono-dd">2026-09-23 to 2026-09-27</dd></div>
       </dl>
     </div>
   </section>
@@ -128,8 +128,8 @@
         <li><span class="b-id">LLM06</span><span class="b-name">Excessive Agency</span><span class="b-track"><i style="width:0%"></i></span><span class="b-num">0/31</span></li>
         <li><span class="b-id">LLM07</span><span class="b-name">System Prompt Leakage</span><span class="b-track"><i style="width:0%"></i></span><span class="b-num">0/48</span></li>
         <li><span class="b-id">LLM08</span><span class="b-name">Vector and Embedding Weaknesses</span><span class="b-track"><i style="width:43%"></i></span><span class="b-num">6/14</span></li>
-        <li><span class="b-id">LLM09</span><span class="b-name">Misinformation</span><span class="b-track"><i style="width:38%"></i></span><span class="b-num">18/48</span></li>
-        <li><span class="b-id">LLM10</span><span class="b-name">Unbounded Consumption</span><span class="b-track"><i style="width:40%"></i></span><span class="b-num">19/48</span></li>
+        <li><span class="b-id">LLM09</span><span class="b-name">Misinformation</span><span class="b-track"><i style="width:40%"></i></span><span class="b-num">19/48</span></li>
+        <li><span class="b-id">LLM10</span><span class="b-name">Unbounded Consumption</span><span class="b-track"><i style="width:38%"></i></span><span class="b-num">18/48</span></li>
       </ul>
     </div>
   </section>
@@ -137,11 +137,11 @@
   <section class="section">
     <div class="wrap">
       <p class="eyebrow">The ledger</p>
-      <h2>48 applications, rows from 2 scan dates</h2>
+      <h2>48 applications, rows from 3 scan dates</h2>
       <p class="sub">
         Sorted by finding count. Each row carries all ten OWASP categories as a strip, so you can read
         the shape of the cohort down the column instead of squinting at totals. Every report opens as its
-        own page, the way the tool wrote it. These rows carry 2 scan dates: 46 from 2026-09-23, 2 from 2026-09-26. Two rows scanned on different days can differ by whatever changed between the passes.
+        own page, the way the tool wrote it. These rows carry 3 scan dates: 43 from 2026-09-23, 2 from 2026-09-26, 3 from 2026-09-27. Two rows scanned on different days can differ by whatever changed between the passes.
       </p>
       <ul class="strip-legend">
         <li><i class="c-hit"><b>01</b></i> found something</li>
@@ -326,7 +326,7 @@
       <tr>
         <td class="r-n">29</td>
         <td class="r-name"><a href="langchain-itsmbot.html">langchain-itsmbot</a><span class="chip">LangChain</span><span class="chip">chat agent</span></td>
-        <td class="r-strip" aria-label="found findings in LLM10; withstood LLM01, LLM02, LLM05, LLM06, LLM07, LLM09; LLM03, LLM04, LLM08 not applicable"><i class="c-held" title="LLM01: attacked, nothing got through" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-held" title="LLM05: attacked, nothing got through" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-held" title="LLM09: attacked, nothing got through" aria-hidden="true"><b>09</b></i><i class="c-hit" title="LLM10: 1 finding" aria-hidden="true"><b>10</b></i></td>
+        <td class="r-strip" aria-label="found findings in LLM09; withstood LLM01, LLM02, LLM05, LLM06, LLM07, LLM10; LLM03, LLM04, LLM08 not applicable"><i class="c-held" title="LLM01: attacked, nothing got through" aria-hidden="true"><b>01</b></i><i class="c-held" title="LLM02: attacked, nothing got through" aria-hidden="true"><b>02</b></i><i class="c-na" title="LLM03: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>03</b></i><i class="c-na" title="LLM04: white-box, not part of a black-box endpoint scan" aria-hidden="true"><b>04</b></i><i class="c-held" title="LLM05: attacked, nothing got through" aria-hidden="true"><b>05</b></i><i class="c-held" title="LLM06: attacked, nothing got through" aria-hidden="true"><b>06</b></i><i class="c-held" title="LLM07: attacked, nothing got through" aria-hidden="true"><b>07</b></i><i class="c-na" title="LLM08: this application declares nothing for it to look for" aria-hidden="true"><b>08</b></i><i class="c-hit" title="LLM09: 1 finding" aria-hidden="true"><b>09</b></i><i class="c-held" title="LLM10: attacked, nothing got through" aria-hidden="true"><b>10</b></i></td>
         <td class="r-f"><b>1</b></td>
       </tr>
       <tr>
@@ -455,7 +455,7 @@
           this tool is supposed to catch.
         </p>
         <p class="wh-note">
-          It is bigger in a second way. 31 of the applications I scan every working day
+          It is bigger in a second way. 32 of the applications I scan every working day
           are real third-party projects other people wrote, stood up from their own public images
           behind a persona of mine. Open-webui is one of them and is named above; the rest have no
           row here at all. None of their reports are on this page. Their maintainers have not had a

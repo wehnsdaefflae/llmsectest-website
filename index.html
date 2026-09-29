@@ -215,7 +215,8 @@
           <ul>
             <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM03)</li>
             <li>A classifier refusal oracle (GLiGuard / Llama-Guard), replacing the substring rule</li>
-            <li>The remaining LLM08 white-box dimensions: embedding-store poisoning and multi-tenant isolation</li>
+            <li class="done">LLM08 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
+            <li>The last LLM08 white-box dimension: embedding-store poisoning</li>
             <li>Deeper supply-chain analysis and stress tests</li>
           </ul>
         </li>

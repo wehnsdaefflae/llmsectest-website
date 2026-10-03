@@ -213,12 +213,21 @@
             <span class="phase-num">03</span><h3>Depth &amp; reports</h3><span class="tag t-next">in progress</span>
           </div>
           <ul>
-            <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM03)</li>
             <li>A classifier refusal oracle (GLiGuard / Llama-Guard), replacing the substring rule</li>
-            <li class="done">LLM08 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
             <li>The last LLM08 white-box dimension: embedding-store poisoning</li>
             <li>Deeper supply-chain analysis and stress tests</li>
+            <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM03)</li>
+            <li class="done">LLM08 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
+            <li class="done">A <strong>remediation database</strong>: every OWASP category carries its own fix steps, CWE ids, compliance mappings and a representative CVSS&nbsp;v4.0 vector, written into the HTML report beside the failures they answer</li>
+            <li class="done">A <strong>plugin API</strong> &mdash; the tool is a <code>pytest11</code> plugin, so your own probes and oracles register the way any pytest plugin does</li>
+            <li class="done"><strong>PDF reports</strong> with no dependency at all, <code>--render-pdf</code>, written straight from SARIF</li>
+            <li class="done">Donating the tool to OWASP: the Board accepted the repository donation in principle on 18&nbsp;September&nbsp;2026, and the formal process is under way</li>
           </ul>
+          <p class="phase-note">
+            The three items at the top are what is still open. Everything marked shipped below them
+            is in the code today. Four of those were planned for after v1.0. They arrived during the
+            funding period instead.
+          </p>
         </li>
         <li class="phase">
           <div class="phase-head">
@@ -235,16 +244,20 @@
           </div>
           <ul>
             <li>Hardening &amp; independent security audit</li>
-            <li>OWASP community submission</li>
-            <li>PDF reports, a remediation database, a plugin API</li>
+            <li>Broader ecosystem integrations beyond the CI templates in phase&nbsp;04</li>
           </ul>
+          <p class="phase-note">
+            Three things that sat here until October&nbsp;2026 have shipped early. PDF reports, the
+            remediation database and the plugin API are now in phase&nbsp;03. So is the OWASP
+            community submission.
+          </p>
         </li>
       </ol>
       <p class="legend">
         <span class="tag t-done">shipped</span> in the code today ·
         <span class="tag t-next">in progress</span> being built now ·
-        <span class="tag t-plan">planned</span> ahead, and the last two phases say which side of the
-        funding period they sit on
+        <span class="tag t-plan">planned</span> ahead. The last two phases say which side of the
+        funding period they sit on.
       </p>
     </div>
   </section>

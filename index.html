@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LLMSecTest: security tests for LLM apps, written in pytest</title>
-<meta name="description" content="LLMSecTest is an open-source, pytest-native security testing framework for LLM applications, mapped to the OWASP LLM Top 10 (2025). One adapter for every model, CVSS-scored findings, SARIF reports for CI. MIT-licensed.">
+<meta name="description" content="LLMSecTest is an open-source, pytest-native security testing framework for LLM applications, mapped to the OWASP LLM Top 10 (2026). One adapter for every model, CVSS-scored findings, SARIF reports for CI. MIT-licensed.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,7 +105,7 @@
       <p class="eyebrow">OWASP LLM Top 10 · honest status</p>
       <h2>What's covered and what isn't yet</h2>
       <p class="sub">
-        All ten OWASP LLM Top&nbsp;10 (2025) categories are implemented and tested today. Nothing here
+        All ten OWASP LLM Top&nbsp;10 (2026) categories are implemented and tested today. Nothing here
         got marked done before it was. What's left to do is <a href="#roadmap">depth</a>. If a run
         can't reach a category, because you didn't hand it a repo, a model path or an app marker, it says
         so as an explicit skip. You won't get a silent gap.
@@ -117,47 +117,61 @@
         application are scored against the whole body. The finding says where the value turned up.
       </p>
       <p class="sub">
-        The numbering below is the <strong>2025</strong> edition. Older editions numbered these
-        differently. Supply chain used to be LLM05 and is now LLM03, so a number from an older list won't
-        line up with what the reports say.
+        The numbering below is the <strong>2026</strong> edition, which this tool moved to on
+        20 October 2026. Eight of the ten categories changed number between 2025 and 2026, so a
+        number from an older list won't line up with what this page says. Each row below carries its
+        2025 number too, and so does every report we publish from here on.
       </p>
       <p class="sub">
-        <strong>There's a 2026 edition. This tool doesn't implement it yet.</strong> It came out on
-        3 August 2026. I've read it against what's here: nothing was added, dropped, merged or split, but
-        eight of the ten categories change number and System Prompt Leakage becomes Hidden Context
-        Exposure with a wider remit. Every report and every stored baseline this project has published
-        carries 2025 numbers, so renumbering quietly would change what those records mean. OWASP's own
-        category pages still show 2025 too. So I'm staying on 2025, saying the year everywhere, and I'll
-        move once there's a way to keep the old records readable.
+        <strong>What happened to the reports that already said 2025.</strong> Nothing. They still
+        say it, and that is deliberate: a report is a record of a scan on a date, and rewriting the
+        category numbers inside one would change what it measured. The 2026 edition added, dropped,
+        merged and split nothing, so the mapping is a renumbering plus one rename — System Prompt
+        Leakage became Hidden Context Exposure, with a wider remit than the old category had. That
+        made the move something a lookup table can do honestly, which is how it was done: the
+        numbering lives in one place in the code, every published value is resolved through it, and
+        the 2025 number travels beside the new one wherever a reader might be holding an older
+        report. A scan run today reports 2026 numbers and says so.
       </p>
       <ul class="cov">
-        <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM02</span><span class="cov-name">Sensitive Information Disclosure</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM03</span><span class="cov-name">Supply Chain (Python, npm and Go manifests, OSV)</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM04</span><span class="cov-name">Data &amp; Model Poisoning</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM05</span><span class="cov-name">Improper Output Handling</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM06</span><span class="cov-name">Excessive Agency</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM07</span><span class="cov-name">System Prompt Leakage</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM08</span><span class="cov-name">Vector &amp; Embedding Weaknesses</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM09</span><span class="cov-name">Misinformation</span><span class="tag t-done">done</span></li>
-        <li><span class="cov-id">LLM10</span><span class="cov-name">Unbounded Consumption</span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection <span class="was">was LLM01</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM02</span><span class="cov-name">Sensitive Information Disclosure <span class="was">was LLM02</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM03</span><span class="cov-name">Excessive Agency <span class="was">was LLM06</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM04</span><span class="cov-name">Supply Chain (Python, npm and Go manifests, OSV) <span class="was">was LLM03</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM05</span><span class="cov-name">Data &amp; Model Poisoning <span class="was">was LLM04</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM06</span><span class="cov-name">Unbounded Consumption <span class="was">was LLM10</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM07</span><span class="cov-name">Misinformation <span class="was">was LLM09</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM08</span><span class="cov-name">Hidden Context Exposure <span class="was">was LLM07, System Prompt Leakage</span></span><span class="tag t-part">partial</span></li>
+        <li><span class="cov-id">LLM09</span><span class="cov-name">Vector &amp; Embedding Weaknesses <span class="was">was LLM08</span></span><span class="tag t-done">done</span></li>
+        <li><span class="cov-id">LLM10</span><span class="cov-name">Improper Output Handling <span class="was">was LLM05</span></span><span class="tag t-done">done</span></li>
       </ul>
+      <p class="sub">
+        <strong>LLM08 is the one row the renumbering changed in substance, so it says partial.</strong>
+        System Prompt Leakage became Hidden Context Exposure and the 2026 category is wider than what
+        we probe: our probes cover the system-prompt subset of it. Retrieved policy text and exposed
+        tool schemas are in the 2026 scope and are not probed yet, so a clean result on this row is
+        not a clean result for the whole category. The tool prints that caveat under its own coverage
+        map rather than leaving it here.
+      </p>
       <p class="legend">
-        <span class="tag t-done">done</span> implemented &amp; tested, <strong>10/10</strong> ·
-        depth improvements continue on the <a href="#roadmap">roadmap</a>
+        <span class="tag t-done">done</span> implemented &amp; tested, <strong>9/10</strong> ·
+        <span class="tag t-part">partial</span> implemented for part of the category's 2026 scope,
+        <strong>1/10</strong> · depth improvements continue on the <a href="#roadmap">roadmap</a>
       </p>
       <p class="sub">
         <strong>What "done" still doesn't tell you.</strong>
         Read this before you trust a clean row.
-        <a href="https://docs.llmsec.dev/owasp/llm06/">LLM06 (excessive agency)</a> can only report what
+        <a href="https://docs.llmsec.dev/owasp/llm06/">LLM03 (excessive agency)</a> can only report what
         your app says. If yours describes an action in prose instead of emitting the signature
         you passed in, a clean row means "we didn't see it", not "your app is fine". We write every
         limitation we find into the <a href="https://docs.llmsec.dev/changelog/">changelog</a>. It comes
-        out again when it's fixed.
+        out again when it's fixed. The docs page for each category keeps the address it was first
+        published at, so that link reads <code>llm06</code> and the category now numbers LLM03 —
+        renaming the pages would break every link anybody has already saved.
       </p>
       <p class="sub">
         <strong>So the coverage footer names how many cases each category ran.</strong>
-        An app-target scan prints <code>exercised: LLM01 (13 cases), LLM05 (3 cases), …</code>, because
+        An app-target scan prints <code>exercised: LLM01 (13 cases), LLM10 (3 cases), …</code>, because
         the two ways in send different amounts: <code>--target app:&lt;url&gt;</code> runs the packaged
         suite and delivers 38 attacks at full inputs, where the Python API sends 23. Thirteen cases are
         a different result from one case. A row that renders both the same way is the thing this tool
@@ -193,12 +207,12 @@
             <span class="phase-num">02</span><h3>OWASP coverage</h3><span class="tag t-done">shipped</span>
           </div>
           <ul>
-            <li class="done">All 10 of 10 categories live: LLM01 to LLM10, the complete OWASP LLM Top&nbsp;10 (2025)</li>
-            <li class="done">Black-box testing of a running application, <code>--target app:&lt;url&gt;</code>, reaching 8 categories once you name what the app holds (<code>--app-prompt/-secret/-action/-canary/-rag-poison</code>); LLM01/05/09/10 need nothing</li>
-            <li class="done">White-box scans: dependency manifests with an OSV known-CVE lookup (<code>--repo</code>, <code>--osv</code>, LLM03), and an offline serialization-opcode scan of model files that never unpickles them (<code>--model-scan</code>, LLM04)</li>
-            <li class="done">A white-box LLM08 read of your persisted vector store (<code>--vector-store</code>), reporting how much of the corpus anybody with read access already holds. It leaves your embeddings uninverted</li>
-            <li class="done">LLM02 and LLM06 attack along four <em>mechanisms</em> each rather than four wordings. A leaked secret counts encoded, Unicode-disguised or split character by character</li>
-            <li class="done">RAG-specific LLM08: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>), scored so one probe's marker cannot void the other's row</li>
+            <li class="done">All 10 of 10 categories live: LLM01 to LLM10, the complete OWASP LLM Top&nbsp;10 (2026)</li>
+            <li class="done">Black-box testing of a running application, <code>--target app:&lt;url&gt;</code>, reaching 8 categories once you name what the app holds (<code>--app-prompt/-secret/-action/-canary/-rag-poison</code>); LLM01/10/07/06 need nothing</li>
+            <li class="done">White-box scans: dependency manifests with an OSV known-CVE lookup (<code>--repo</code>, <code>--osv</code>, LLM04), and an offline serialization-opcode scan of model files that never unpickles them (<code>--model-scan</code>, LLM05)</li>
+            <li class="done">A white-box LLM09 read of your persisted vector store (<code>--vector-store</code>), reporting how much of the corpus anybody with read access already holds. It leaves your embeddings uninverted</li>
+            <li class="done">LLM02 and LLM03 attack along four <em>mechanisms</em> each rather than four wordings. A leaked secret counts encoded, Unicode-disguised or split character by character</li>
+            <li class="done">RAG-specific LLM09: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>), scored so one probe's marker cannot void the other's row</li>
             <li class="done"><strong>Guardrails under load</strong> (<code>--app-stress N</code>): N probes at once, reporting only a guardrail that held singly and stopped holding together &mdash; and saying so with the numbers when the requests never actually overlapped</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) plus a false-refusal rate on the benign twins (<code>--redteam-benign</code>)</li>
             <li class="done"><strong>Reports that can't flatter your app:</strong> a probe that got no answer is inconclusive and never a pass, the status reads <code>INCOMPLETE</code>, and a reply identical to what we sent stops with an error instead of scoring. <a href="reports/">See it on our whole test cohort&nbsp;&raquo;</a> and on one result written up alone: <a href="findings/secrets-leave-through-the-prompt.html">your secret-disclosure test passed, the secret still left&nbsp;&raquo;</a></li>
@@ -214,17 +228,18 @@
           </div>
           <ul>
             <li>A classifier refusal oracle (GLiGuard / Llama-Guard), replacing the substring rule</li>
-            <li>The last LLM08 white-box dimension: embedding-store poisoning</li>
+            <li>The last LLM09 white-box dimension: embedding-store poisoning</li>
             <li>Deeper supply-chain analysis and stress tests</li>
-            <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM03)</li>
-            <li class="done">LLM08 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
+            <li>The rest of LLM08's 2026 scope: retrieved policy text and exposed tool schemas, which Hidden Context Exposure covers and our system-prompt probes do not reach</li>
+            <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM04)</li>
+            <li class="done">LLM09 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
             <li class="done">A <strong>remediation database</strong>: every OWASP category carries its own fix steps, CWE ids, compliance mappings and a representative CVSS&nbsp;v4.0 vector, written into the HTML report beside the failures they answer</li>
             <li class="done">A <strong>plugin API</strong> &mdash; the tool is a <code>pytest11</code> plugin, so your own probes and oracles register the way any pytest plugin does</li>
             <li class="done"><strong>PDF reports</strong> with no dependency at all, <code>--render-pdf</code>, written straight from SARIF</li>
             <li class="done">Donating the tool to OWASP: the Board accepted the repository donation in principle on 18&nbsp;September&nbsp;2026, and the formal process is under way</li>
           </ul>
           <p class="phase-note">
-            The three items at the top are what is still open. Everything marked shipped below them
+            The four items at the top are what is still open. Everything marked shipped below them
             is in the code today. Four of those were planned for after v1.0. They arrived during the
             funding period instead.
           </p>
@@ -272,7 +287,9 @@
           viewer. Each finding carries its OWASP category, a CVSS vector and a pointer to the fix.
           Here's the shape of it.
         </p>
-        <p class="micro">Illustrative. This is the format we target. We didn't run this scan.</p>
+        <p class="micro">We didn't run this scan, but the property names are the ones a report really
+          carries. <code>owasp-edition</code> is on every finding, so a stored SARIF says which
+          numbering it was scored under rather than leaving you to date it.</p>
         <p><a class="more" href="findings/secrets-leave-through-the-prompt.html">Read a finding &raquo;</a> The secret-disclosure probes found one thing across the 52 applications scanned on 31 August 2026; 32 of them gave the credential up anyway.</p>
         <p><a class="more" href="findings/hash-filter-boundaries.html">Read another &raquo;</a> An output filter that holds only the hash of the credential has to guess where the credential ends. Twelve spellings of one value, seven of them straight through. <a href="findings/">Both write-ups &raquo;</a></p>
         <p><a class="more" href="reports/">See real ones &raquo;</a> Every report from our own regression
@@ -285,9 +302,11 @@
   <span class="str">"ruleId"</span>: <span class="str">"LLM01-prompt-injection"</span>,
   <span class="str">"level"</span>: <span class="str">"error"</span>,
   <span class="str">"properties"</span>: {
-    <span class="str">"owasp"</span>: <span class="str">"LLM01:2025 Prompt Injection"</span>,
-    <span class="str">"cvss"</span>:  <span class="str">"CVSS:4.0/AV:N/AC:L/.../VC:H"</span>,
-    <span class="str">"score"</span>: <span class="num">9.2</span>
+    <span class="str">"owasp-category"</span>: <span class="str">"LLM01"</span>,
+    <span class="str">"owasp-name"</span>: <span class="str">"Prompt Injection"</span>,
+    <span class="str">"owasp-edition"</span>: <span class="str">"2026"</span>,
+    <span class="str">"cvss_vector"</span>: <span class="str">"CVSS:4.0/AV:N/AC:L/.../VC:H"</span>,
+    <span class="str">"security-severity"</span>: <span class="str">"9.2"</span>
   },
   <span class="str">"message"</span>: {
     <span class="str">"text"</span>: <span class="str">"System prompt recovered via instruction override."</span>

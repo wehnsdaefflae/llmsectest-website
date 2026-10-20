@@ -146,7 +146,9 @@ code, kbd { font-family: var(--mono); }
 .cov-name { font-size: 1rem; color: var(--text); }
 .tag { font-family: var(--mono); font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; padding: .18rem .58rem; border-radius: 3px; border: 1px solid currentColor; white-space: nowrap; font-weight: 400; }
 .t-done { color: var(--ok); }
+.t-part { color: var(--warn); }
 .t-next { color: var(--warn); }
+.was { font-family: var(--mono); font-size: .72rem; color: var(--dim); white-space: nowrap; }
 .t-plan { color: var(--idle); }
 .legend { font-size: .86rem; color: var(--dim); display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: center; }
 .legend .tag { margin-right: .35ch; }

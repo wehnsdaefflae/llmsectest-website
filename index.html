@@ -232,6 +232,7 @@
             <li>The last LLM09 white-box dimension: embedding-store poisoning</li>
             <li>Deeper supply-chain analysis and stress tests</li>
             <li>The rest of LLM08's 2026 scope: retrieved policy text and exposed tool schemas, which Hidden Context Exposure covers and our system-prompt probes do not reach</li>
+            <li class="done"><strong>A refusal is scored on what it says</strong>, not only on whether it happened. A target can decline your request and still quote the system prompt it is protecting, name the secret it was holding, or spell out a capability it claims not to have. That gets reported as a refusal that leaked. We only match what the scan planted, so you can trace every verdict to something we put there</li>
             <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM04)</li>
             <li class="done">LLM09 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
             <li class="done">A <strong>remediation database</strong>: every OWASP category carries its own fix steps, CWE ids, compliance mappings and a representative CVSS&nbsp;v4.0 vector, written into the HTML report beside the failures they answer</li>

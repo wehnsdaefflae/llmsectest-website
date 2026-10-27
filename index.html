@@ -43,11 +43,11 @@
     <div class="wrap">
       <p class="tagline">Security tests for LLM apps, written in pytest.</p>
       <p class="lede">
-        Your app has failure modes your test suite can't see. It'll follow an instruction hidden in a
-        document it just retrieved. It'll repeat a key you told it to keep. It'll act on an authorisation
-        the caller just typed in.<br><br>
-        LLMSecTest attacks your running app for all ten <strong>OWASP LLM Top&nbsp;10</strong> categories
-        and tells you what it got out. MIT-licensed, on PyPI, built in the open.
+        Tell your app to ignore its instructions. It says no. Now hide that same line in a document
+        it retrieves. Quite often it goes along with it.<br><br>
+        You can't see that by reading the code. You have to try it. LLMSecTest tries it, a few hundred
+        ways, across all ten <strong>OWASP LLM Top&nbsp;10</strong> categories, then tells you what came
+        back out. MIT, on PyPI, built in the open.
       </p>
       <div class="hero-cta">
         <code>pip install llmsectest</code>
@@ -72,9 +72,9 @@
       </div>
       <div class="feat">
         <h2>CI-native</h2>
-        <p>Reports come out as SARIF v2.1.0, which your code-scanning dashboard already reads.
-        HTML, JSON and Markdown too. No glue code. Every result carries a stable
-        fingerprint, so scanning twice updates your alerts. It doesn't close them and open new ones.</p>
+        <p>SARIF v2.1.0 out of the box, which your code-scanning dashboard already reads. HTML, JSON
+        and Markdown too. Scan twice and your alerts get updated, because every result carries a
+        fingerprint that survives a new port number.</p>
         <a class="more" href="#output">A sample finding&nbsp;&raquo;</a>
       </div>
     </div>

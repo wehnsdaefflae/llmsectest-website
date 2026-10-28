@@ -92,8 +92,10 @@
       <div class="terminal" aria-label="Quick-start commands">
         <div class="term-bar"><i></i><i></i><i></i><span>bash</span></div>
         <pre class="term-body"><code><span class="p">~ $</span> pip install <span class="com">llmsectest</span>
-<span class="p">~ $</span> llmsectest --target anthropic:claude-3-5-haiku
+<span class="p">~ $</span> llmsectest                                          <span class="com"># offline demo, no key needed</span>
 <span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat   <span class="com"># your live app</span>
+<span class="p">~ $</span> pip install <span class="com">"llmsectest[anthropic]"</span>              <span class="com"># for a hosted model</span>
+<span class="p">~ $</span> ANTHROPIC_API_KEY=... llmsectest --target anthropic:claude-3-5-haiku
 <span class="p">~ $</span> llmsectest --target app:http://localhost:8000/chat \
       --report-formats=sarif,html,json,markdown
 <span class="out"># => OWASP LLM Top 10 categories probed · findings written to results/&lt;target&gt;.sarif</span></code></pre>
@@ -253,7 +255,7 @@
           </div>
           <ul>
             <li>CI/CD templates for GitHub Actions · GitLab CI · Jenkins</li>
-            <li><strong>v1.0 on PyPI by 2026-11-30</strong>, the last day of the funding period. Where it stands today: <code>pip install llmsectest</code> serves <strong>0.3.0</strong>, and <strong>0.4.0</strong> is cut and waiting to be uploaded, from 918 passing tests at 86% branch coverage. The remaining distance to 1.0 is this phase's CI/CD templates and the two open Phase 03 promises above it, not new scope.</li>
+            <li><strong>v1.0 on PyPI by 2026-11-30</strong>, the last day of the funding period. Where it stands today: <code>pip install llmsectest</code> serves <strong>0.4.1</strong>, from 1026 passing tests at 88% coverage with branch measurement on (82% of branches alone). The remaining distance to 1.0 is this phase's CI/CD templates and the two open Phase 03 promises above it, not new scope.</li>
           </ul>
         </li>
         <li class="phase">

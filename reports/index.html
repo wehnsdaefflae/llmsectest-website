@@ -79,15 +79,15 @@
         <div>
           <h3>One small local model answers all of them</h3>
           <p>
-            The same quantised Gemma sits behind every app, running on my desk. So none of this
-            carries over to a frontier model. A gap between two rows can easily be the model's
-            sampling rather than the apps. The cohort earns its keep as a regression net. If a count
-            moves and no code change explains it, something broke.
+            The same quantised Gemma sits behind every app, running on my desk. So these numbers
+            are this model's. Expect a frontier model to behave differently. A gap
+            between two rows can easily come from the model's sampling. The cohort earns its keep
+            as a regression net: if a count moves and no code change explains it, something broke.
           </p>
         </div>
         <div>
           <h3>An empty row isn't a clean bill of health</h3>
-          <p>LLM02 found something on 1 of the 48 applications that declared a secret for it to look for. It read zero on every pass from 2026-07-15 until it did not, which is the whole reason the cohort is re-run rather than trusted.</p>
+          <p>LLM02 found something on 1 of the 48 applications that declared a secret for it to look for. It read zero on every pass from 2026-07-15 until it did not. That is why the cohort gets re-run.</p>
         </div>
       </div>
     </div>
@@ -99,9 +99,8 @@
       <h2>Four worth opening</h2>
       <p class="sub">
         The rows with the biggest numbers are the dullest ones. These four each show something the tool
-        is meant to do. They're picked from the data rather than by hand, so if the cohort stops showing
-        one of them, the card disappears rather than pointing you at a report that doesn't show it any
-        more.
+        is meant to do. The data picks them, so a card whose claim the cohort stops showing drops
+        off this page.
       </p>
       <ol class="picks">
         <li><a href="langchain-guardedbot.html">langchain-guardedbot</a><span class="p-why">a defence that holds</span><p>A defended twin of an undefended member: character for character the same persona, with a real guard in front. It&#x27;s pinned as a control for LLM06 only. Pinning a category it can&#x27;t speak to would pin a number that means nothing.</p></li><li><a href="langchain-electionbot.html">langchain-electionbot</a><span class="p-why">a clean row that refuses to look clean</span><p>It survived every sensitive-disclosure attempt. The report still won&#x27;t call them withstood, because the secret came back out through a different probe in the same run. A scan that got your secret can&#x27;t turn round and call it protected.</p></li><li><a href="haystack-researchbot.html">haystack-researchbot</a><span class="p-why">an instruction that arrived in a document</span><p>Nobody typed this attack at the app. It read a planted document out of its own retrieval corpus and did what the document told it to.</p></li>
@@ -139,9 +138,9 @@
       <p class="eyebrow">The ledger</p>
       <h2>49 applications, rows from 10 scan dates</h2>
       <p class="sub">
-        Sorted by finding count. Each row carries all ten OWASP categories as a strip, so you can read
-        the shape of the cohort down the column instead of squinting at totals. Every report opens as its
-        own page, the way the tool wrote it. These rows carry 10 scan dates: 26 from 2026-09-23, 2 from 2026-09-26, 3 from 2026-09-27, 3 from 2026-09-28, 3 from 2026-09-29, 3 from 2026-10-01, 3 from 2026-10-02, 3 from 2026-10-03, 2 from 2026-10-04, 1 from 2026-11-03. Two rows scanned on different days can differ by whatever changed between the passes.
+        Sorted by finding count. Each row carries all ten OWASP categories as a strip, so the shape of
+        the cohort reads down the column. Every report opens as its own page, the way the tool wrote
+        it. These rows carry 10 scan dates: 26 from 2026-09-23, 2 from 2026-09-26, 3 from 2026-09-27, 3 from 2026-09-28, 3 from 2026-09-29, 3 from 2026-10-01, 3 from 2026-10-02, 3 from 2026-10-03, 2 from 2026-10-04, 1 from 2026-11-03. Two rows scanned on different days can differ by whatever changed between the passes.
       </p>
       <ul class="strip-legend">
         <li><i class="c-hit"><b>01</b></i> found something</li>
@@ -454,7 +453,7 @@
       </div>
       <div class="withheld">
         <p class="foot-label">Not published, and why</p>
-        <ul><li><code>open-webui-shopbot</code>: somebody else&#x27;s software. I stood it up myself behind a persona I wrote, so the findings here describe my persona and the local model. They say nothing about open-webui&#x27;s own code</li><li><code>ollama-gemma4-regression</code>: a bare model rather than an app. It&#x27;s here as my harness control. Publishing a model-level score off one quantised local build is the kind of claim this whole project is built to avoid</li><li><code>langchain-travelbot</code>: its last local scan reported nothing at all where the regression baseline expects nine. The same report says the planted secret and the privileged action never appeared in any reply. A misconfigured scan looks exactly like a clean one here, so I can&#x27;t tell the two apart from the artefact</li><li><code>llamaindex-securitybot</code>: its last local scan found nothing outside its retrieval group, where the baseline has findings in four other categories. Until it is re-measured, publishing the number would put a fact about my own setup on the page as a fact about the application</li></ul>
+        <ul><li><code>open-webui-shopbot</code>: somebody else&#x27;s software. I stood it up myself behind a persona I wrote, so the findings here describe my persona and the local model. They say nothing about open-webui&#x27;s own code</li><li><code>ollama-gemma4-regression</code>: a bare model, with no application around it. It&#x27;s here as my harness control. Publishing a model-level score off one quantised local build is the kind of claim this whole project is built to avoid</li><li><code>langchain-travelbot</code>: its last local scan reported nothing at all where the regression baseline expects nine. The same report says the planted secret and the privileged action never appeared in any reply. A misconfigured scan looks exactly like a clean one here, so I can&#x27;t tell the two apart from the artefact</li><li><code>llamaindex-securitybot</code>: its last local scan found nothing outside its retrieval group, where the baseline has findings in four other categories. Until it is re-measured, publishing the number would put a fact about my own setup on the page as a fact about the application</li></ul>
         <p class="wh-note">
           The cohort is bigger than the table. I hold 4 rows back for the reasons
           above. I say so here, because a scan that shows you only the flattering half is the thing

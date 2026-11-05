@@ -67,7 +67,7 @@
       <div class="feat">
         <h2>Mapped &amp; scored</h2>
         <p>Every probe maps to an OWASP LLM Top&nbsp;10 category and carries a CVSS&nbsp;v4.0 base
-        score. So you can triage a finding instead of reading a wall of text.</p>
+        score. So a finding arrives already triaged.</p>
         <a class="more" href="#coverage">The coverage map&nbsp;&raquo;</a>
       </div>
       <div class="feat">
@@ -106,12 +106,14 @@
   <section id="coverage" class="section">
     <div class="wrap">
       <p class="eyebrow">OWASP LLM Top 10 · honest status</p>
-      <h2>What's covered and what isn't yet</h2>
+      <h2>Where the coverage stands</h2>
       <p class="sub">
-        All ten OWASP LLM Top&nbsp;10 (2026) categories are implemented and tested today. Nothing here
-        got marked done before it was. What's left to do is <a href="#roadmap">depth</a>. If a run
-        can't reach a category, because you didn't hand it a repo, a model path or an app marker, it says
-        so as an explicit skip. You won't get a silent gap.
+        All ten OWASP LLM Top&nbsp;10 (2026) categories are implemented and tested today. Nine of
+        them cover the whole category. LLM08 covers the part of its 2026 scope we probe, which its
+        row says.
+        The work ahead is <a href="#roadmap">depth</a>.
+        A category a run can't reach, for want of a repo, a model path or an app marker, comes back
+        as an explicit skip with the missing input named.
       </p>
       <p class="sub">
         A scan reads the whole response, not just the reply field. An answer can come back in a
@@ -155,7 +157,7 @@
         we probe: our probes cover the system-prompt subset of it. Retrieved policy text and exposed
         tool schemas are in the 2026 scope and are not probed yet, so a clean result on this row is
         not a clean result for the whole category. The tool prints that caveat under its own coverage
-        map rather than leaving it here.
+        map, where you meet it while reading a report.
       </p>
       <p class="legend">
         <span class="tag t-done">done</span> implemented &amp; tested, <strong>9/10</strong> ·
@@ -166,8 +168,8 @@
         <strong>What "done" still doesn't tell you.</strong>
         Read this before you trust a clean row.
         <a href="https://docs.llmsec.dev/owasp/llm06/">LLM03 (excessive agency)</a> can only report what
-        your app says. If yours describes an action in prose instead of emitting the signature
-        you passed in, a clean row means "we didn't see it", not "your app is fine". We write every
+        your app says. If yours describes an action in prose, with no sign of the signature you
+        passed in, a clean row means "we didn't see it". Read it that way. We write every
         limitation we find into the <a href="https://docs.llmsec.dev/changelog/">changelog</a>. It comes
         out again when it's fixed. The docs page for each category keeps the address it was first
         published at. So that link reads <code>llm06</code> while the category now numbers LLM03.
@@ -215,13 +217,13 @@
             <li class="done">Black-box testing of a running application, <code>--target app:&lt;url&gt;</code>, reaching 8 categories once you name what the app holds (<code>--app-prompt/-secret/-action/-canary/-rag-poison</code>); LLM01/10/07/06 need nothing</li>
             <li class="done">White-box scans: dependency manifests with an OSV known-CVE lookup (<code>--repo</code>, <code>--osv</code>, LLM04), and an offline serialization-opcode scan of model files that never unpickles them (<code>--model-scan</code>, LLM05)</li>
             <li class="done">A white-box LLM09 read of your persisted vector store (<code>--vector-store</code>), reporting how much of the corpus anybody with read access already holds. It leaves your embeddings uninverted</li>
-            <li class="done">LLM02 and LLM03 attack along four <em>mechanisms</em> each rather than four wordings. A leaked secret counts encoded, Unicode-disguised or split character by character</li>
+            <li class="done">LLM02 and LLM03 attack along four distinct <em>mechanisms</em> each, so four rewordings of one trick count once. A leaked secret counts encoded, Unicode-disguised or split character by character</li>
             <li class="done">RAG-specific LLM09: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>), scored so one probe's marker cannot void the other's row</li>
-            <li class="done"><strong>Guardrails under load</strong> (<code>--app-stress N</code>): N probes at once, reporting only a guardrail that held singly and stopped holding together &mdash; and saying so with the numbers when the requests never actually overlapped</li>
+            <li class="done"><strong>Guardrails under load</strong> (<code>--app-stress N</code>): N probes at once, reporting only a guardrail that held singly and stopped holding together. When the requests never overlapped, the numbers say so</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) plus a false-refusal rate on the benign twins (<code>--redteam-benign</code>)</li>
-            <li class="done"><strong>Reports that can't flatter your app:</strong> a probe that got no answer is inconclusive and never a pass, the status reads <code>INCOMPLETE</code>, and a reply identical to what we sent stops with an error instead of scoring. <a href="reports/">See it on our whole test cohort&nbsp;&raquo;</a> and on one result written up alone: <a href="findings/secrets-leave-through-the-prompt.html">your secret-disclosure test passed, the secret still left&nbsp;&raquo;</a></li>
-            <li class="done"><strong>Attacks the model writes itself</strong> (<code>--redteam-generate N</code>), added to the hand-written set rather than replacing it, with every rewrite that lost its marker or that a hardened target also answers thrown out and counted</li>
-            <li class="done"><strong>A PDF report with no dependency at all</strong> (<code>--render-pdf</code>), written directly from SARIF rather than converted from HTML: a 60-finding report is 7 pages and 8&nbsp;KB, with anything that stops it being a pass on page one</li>
+            <li class="done"><strong>Reports that can't flatter your app:</strong> a probe that got no answer is inconclusive and never a pass, the status reads <code>INCOMPLETE</code>, and a reply identical to what we sent stops with an error and is never scored. <a href="reports/">See it on our whole test cohort&nbsp;&raquo;</a> and on one result written up alone: <a href="findings/secrets-leave-through-the-prompt.html">your secret-disclosure test passed, the secret still left&nbsp;&raquo;</a></li>
+            <li class="done"><strong>Attacks the model writes itself</strong> (<code>--redteam-generate N</code>), added to the hand-written set, which stays. Every rewrite that lost its marker, or that a hardened target also answers, is thrown out and counted</li>
+            <li class="done"><strong>A PDF report with no dependency at all</strong> (<code>--render-pdf</code>), written straight out of the SARIF, so a 60-finding report is 7 pages and 8&nbsp;KB, with anything that stops it being a pass on page one</li>
             <li class="done">Standalone HTML from any SARIF file (<code>--render-sarif</code>), proven against committed output from ruff, Bandit and Semgrep</li>
           </ul>
           <p class="phase-note">Release-by-release detail lives in the <a href="https://docs.llmsec.dev/changelog/">changelog</a>.</p>
@@ -292,9 +294,9 @@
           viewer. Each finding carries its OWASP category, a CVSS vector and a pointer to the fix.
           Here's the shape of it.
         </p>
-        <p class="micro">We didn't run this scan, but the property names are the ones a report really
-          carries. <code>owasp-edition</code> is on every finding, so a stored SARIF says which
-          numbering it was scored under rather than leaving you to date it.</p>
+        <p class="micro">This is an illustration, with the property names a real report carries.
+          <code>owasp-edition</code> is on every finding, so a stored SARIF carries the numbering it
+          was scored under.</p>
         <p><a class="more" href="findings/secrets-leave-through-the-prompt.html">Read a finding &raquo;</a> The secret-disclosure probes found one thing across the 52 applications scanned on 31 August 2026; 32 of them gave the credential up anyway.</p>
         <p><a class="more" href="findings/hash-filter-boundaries.html">Read another &raquo;</a> An output filter that holds only the hash of the credential has to guess where the credential ends. Twelve spellings of one value, seven of them straight through. <a href="findings/">Both write-ups &raquo;</a></p>
         <p><a class="more" href="reports/">See real ones &raquo;</a> Every report from our own regression

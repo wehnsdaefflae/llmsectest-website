@@ -117,7 +117,7 @@
       </p>
       <p class="sub">
         A scan reads the whole response, not just the reply field. An answer can come back in a
-        sibling field: one application returned a planted secret in <code>message.reasoning</code>
+        sibling field. One application returned a planted secret in <code>message.reasoning</code>
         while <code>message.content</code> held a refusal. Probes that plant their marker in your
         application are scored against the whole body. The finding says where the value turned up.
       </p>
@@ -168,8 +168,8 @@
         <strong>What "done" still doesn't tell you.</strong>
         Read this before you trust a clean row.
         <a href="https://docs.llmsec.dev/owasp/llm06/">LLM03 (excessive agency)</a> can only report what
-        your app says. If yours describes an action in prose, with no sign of the signature you
-        passed in, a clean row means "we didn't see it". Read it that way. We write every
+        your app says. Your app may describe an action in prose, with no sign of the signature you
+        passed in. A clean row then means "we didn't see it". Read it that way. We write every
         limitation we find into the <a href="https://docs.llmsec.dev/changelog/">changelog</a>. It comes
         out again when it's fixed. The docs page for each category keeps the address it was first
         published at. So that link reads <code>llm06</code> while the category now numbers LLM03.
@@ -219,7 +219,7 @@
             <li class="done">A white-box LLM09 read of your persisted vector store (<code>--vector-store</code>), reporting how much of the corpus anybody with read access already holds. It leaves your embeddings uninverted</li>
             <li class="done">LLM02 and LLM03 attack along four distinct <em>mechanisms</em> each, so four rewordings of one trick count once. A leaked secret counts encoded, Unicode-disguised or split character by character</li>
             <li class="done">RAG-specific LLM09: retrieval exposure (<code>--app-canary</code>) and indirect prompt injection through a poisoned retrieved document (<code>--app-rag-poison</code>), scored so one probe's marker cannot void the other's row</li>
-            <li class="done"><strong>Guardrails under load</strong> (<code>--app-stress N</code>): N probes at once, reporting only a guardrail that held singly and stopped holding together. When the requests never overlapped, the numbers say so</li>
+            <li class="done"><strong>Guardrails under load</strong> (<code>--app-stress N</code>): N probes at once, reporting only a guardrail that held singly and stopped holding together. The numbers say so whenever the requests never overlapped</li>
             <li class="done">Red-team jailbreak set (JailbreakBench / AdvBench, <code>--redteam-set</code>) plus a false-refusal rate on the benign twins (<code>--redteam-benign</code>)</li>
             <li class="done"><strong>Reports that can't flatter your app:</strong> a probe that got no answer is inconclusive and never a pass, the status reads <code>INCOMPLETE</code>, and a reply identical to what we sent stops with an error and is never scored. <a href="reports/">See it on our whole test cohort&nbsp;&raquo;</a> and on one result written up alone: <a href="findings/secrets-leave-through-the-prompt.html">your secret-disclosure test passed, the secret still left&nbsp;&raquo;</a></li>
             <li class="done"><strong>Attacks the model writes itself</strong> (<code>--redteam-generate N</code>), added to the hand-written set, which stays. Every rewrite that lost its marker, or that a hardened target also answers, is thrown out and counted</li>

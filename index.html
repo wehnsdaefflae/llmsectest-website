@@ -125,7 +125,8 @@
         The numbering below is the <strong>2026</strong> edition, which this tool moved to on
         20 October 2026. Eight of the ten categories changed number between 2025 and 2026, so a
         number from an older list won't line up with what this page says. Each row below carries its
-        2025 number too. So does every report we publish from here on.
+        2025 number too. A report the tool writes from version 0.4.0 onward carries the edition it
+        was scored under; the reports already on this site came out of 0.3.0 and do not.
       </p>
       <p class="sub">
         <strong>What happened to the reports that already said 2025.</strong> Nothing. They still
@@ -136,8 +137,10 @@
         The 2026 edition added nothing, dropped nothing, merged nothing. It renumbers. It also
         renames one category: System Prompt Leakage is now Hidden Context Exposure, with a wider
         remit. So a lookup table can do this move honestly. The numbering lives in one place in the
-        code. Every published value resolves through it. Every finding names the edition it was
-        scored under, so you can date a report you're holding.
+        code. Every published value resolves through it. From version 0.4.0 the tool stamps the
+        edition onto every finding it writes, so you can date a report it produces. The 49 reports
+        on this site predate that: version 0.3.0 rendered them and they say so in their own
+        header, and I do not re-render a report after the fact.
       </p>
       <ul class="cov">
         <li><span class="cov-id">LLM01</span><span class="cov-name">Prompt Injection <span class="was">was LLM01</span></span><span class="tag t-done">done</span></li>
@@ -295,10 +298,10 @@
           Here's the shape of it.
         </p>
         <p class="micro">This is an illustration, with the property names a real report carries.
-          <code>owasp-edition</code> is on every finding, so a stored SARIF carries the numbering it
-          was scored under.</p>
+          <code>owasp-edition</code> is on every finding the tool writes from version 0.4.0 on, so a
+          stored SARIF carries the numbering it was scored under.</p>
         <p><a class="more" href="findings/secrets-leave-through-the-prompt.html">Read a finding &raquo;</a> The secret-disclosure probes found one thing across the 52 applications scanned on 31 August 2026; 32 of them gave the credential up anyway.</p>
-        <p><a class="more" href="findings/hash-filter-boundaries.html">Read another &raquo;</a> An output filter that holds only the hash of the credential has to guess where the credential ends. Twelve spellings of one value, seven of them straight through. <a href="findings/">Both write-ups &raquo;</a></p>
+        <p><a class="more" href="findings/hash-filter-boundaries.html">Read another &raquo;</a> An output filter that holds only the hash of the credential has to guess where the credential ends. Twelve spellings of one value, seven of them straight through. <a href="findings/">All five write-ups &raquo;</a></p>
         <p><a class="more" href="reports/">See real ones &raquo;</a> Every report from our own regression
           cohort, unedited: dozens of LLM applications scanned black-box, including the categories that
           found nothing.</p>

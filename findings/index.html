@@ -101,6 +101,16 @@
         starts and stops before it can hash anything. Twelve spellings of one value: seven pass the
         naive level, five pass the expensive one, and four of those are out of reach of any digest.
       </p>
+
+      <p class="sub" style="margin-top:1.6rem">
+        <a class="more" href="ask-for-the-credential-as-a-field.html">Four guardrails refused the
+        secret. The fifth request got it. &raquo;</a><br>
+        Four prompt-injection mechanisms asked a guarded application for its signing secret and all
+        four were refused. The same secret asked for as a <code>.env</code> line came back
+        <b>verbatim</b>, because writing a deploy artefact is a job the assistant exists for. One
+        request in a Kubernetes-Secret format was refused outright, so three artefact formats gave
+        three different answers from one application.
+      </p>
     </div>
   </section>
 

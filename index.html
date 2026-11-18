@@ -155,12 +155,14 @@
         <li><span class="cov-id">LLM10</span><span class="cov-name">Improper Output Handling <span class="was">was LLM05</span></span><span class="tag t-done">done</span></li>
       </ul>
       <p class="sub">
-        <strong>LLM08 is the one row the renumbering changed in substance, so it says partial.</strong>
-        System Prompt Leakage became Hidden Context Exposure and the 2026 category is wider than what
-        we probe: our probes cover the system-prompt subset of it. Retrieved policy text and exposed
-        tool schemas are in the 2026 scope and are not probed yet, so a clean result on this row is
-        not a clean result for the whole category. The tool prints that caveat under its own coverage
-        map, where you meet it while reading a report.
+        <strong>LLM08 retains partial coverage.</strong>
+        The application probes cover system prompts and exact private retrieved-policy or tool-schema
+        excerpts. The <code>--app-policy</code> and <code>--app-tool-schema</code> options require text
+        the application already holds. Each source enables two extraction probes. The scanner never
+        puts the private excerpt in the attack. The detector requires the complete, case-sensitive
+        excerpt in a reply or another string-valued response field. It does not detect paraphrased,
+        encoded or partial exposure. An absent match does not establish complete protection.
+        Reports contain matched private text and need the same access controls as the input.
       </p>
       <p class="legend">
         <span class="tag t-done">done</span> implemented &amp; tested, <strong>9/10</strong> ·
@@ -194,9 +196,10 @@
       <p class="eyebrow">Roadmap · shipped, building, planned</p>
       <h2>Where it's going</h2>
       <p class="sub">
-        Built in the open across the funding period, which runs to the end of November 2026. Each
-        phase ships before we claim the next one.
-        The status here tracks what the code really does today.
+        The funding period runs to 31 March 2027 after the Second Stage extension.
+        The v1.0 release commitment remains 30 November 2026.
+        Each phase ships before the project claims the next one.
+        The status here tracks what the code does today.
       </p>
       <ol class="roadmap">
         <li class="phase">
@@ -260,7 +263,7 @@
           </div>
           <ul>
             <li>CI/CD templates for GitHub Actions · GitLab CI · Jenkins</li>
-            <li><strong>v1.0 on PyPI by 2026-11-30</strong>, the release date Mark retained after the funding period was extended to 2027-03-31. Where it stands today: <code>pip install llmsectest</code> serves <strong>0.4.1</strong>, from 1093 passing tests at 88% coverage with branch measurement on (82% of branches alone). The remaining distance to 1.0 is this phase's CI/CD templates and the four open Phase 03 promises above it, not new scope.</li>
+            <li><strong>v1.0 on PyPI by 2026-11-30</strong>, the release date Mark retained after the funding period was extended to 2027-03-31. The published package remains <strong>0.4.1</strong>. The current development tree has <strong>1116 passing tests</strong> at 88% coverage with branch measurement enabled. The remaining distance to 1.0 is this phase's CI/CD templates and the four open Phase 03 promises above it, not new scope.</li>
           </ul>
         </li>
         <li class="phase">

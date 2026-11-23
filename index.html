@@ -241,7 +241,7 @@
           <ul>
             <li>A classifier refusal oracle (GLiGuard / Llama-Guard), replacing the substring rule</li>
             <li>Deeper supply-chain analysis and stress tests</li>
-            <li>The rest of LLM08's 2026 scope: retrieved policy text and exposed tool schemas, which Hidden Context Exposure covers and our system-prompt probes do not reach</li>
+            <li class="done"><strong>The rest of LLM08's 2026 scope</strong>, retrieved policy text and exposed tool schemas. You declare the private excerpt with <code>--app-policy</code> and <code>--app-tool-schema</code>, we never put it in the request, so a hit is your application producing it unprompted. Each report row names the kinds of hidden context that run probed</li>
             <li class="done"><strong>A refusal is scored on what it says</strong>, not only on whether it happened. A target can decline your request and still quote the system prompt it is protecting, name the secret it was holding, or spell out a capability it claims not to have. That gets reported as a refusal that leaked. We only match what the scan planted, so you can trace every verdict to something we put there</li>
             <li class="done">CycloneDX SBOM generation, <code>--sbom &lt;path&gt;</code> (LLM04)</li>
             <li class="done">LLM09 multi-tenant namespace isolation, read from a persisted store with <code>--vector-store &lt;path&gt;</code>: one store holding several tenants' vectors, where a forgotten retrieval filter returns the union</li>
@@ -252,7 +252,7 @@
             <li class="done">Donating the tool to OWASP: the Board accepted the repository donation in principle on 18&nbsp;September&nbsp;2026, and the formal process is under way</li>
           </ul>
           <p class="phase-note">
-            The three items at the top are what is still open. Everything marked shipped below them
+            The two items at the top are still open. Everything marked shipped below them
             is in the code today. Four of those were planned for after v1.0. They arrived during the
             funding period instead.
           </p>
@@ -263,7 +263,7 @@
           </div>
           <ul>
             <li>CI/CD templates for GitHub Actions · GitLab CI · Jenkins</li>
-            <li><strong>v1.0 on PyPI by 2026-11-30</strong>, the release date Mark retained after the funding period was extended to 2027-03-31. The published package remains <strong>0.4.1</strong>. The current development tree has <strong>1122 passing tests</strong> at 88% coverage with branch measurement enabled. The remaining distance to 1.0 is this phase's CI/CD templates and the four open Phase 03 promises above it, not new scope.</li>
+            <li><strong>v1.0 on PyPI by 2026-11-30</strong>, the release date Mark retained after the funding period was extended to 2027-03-31. The published package remains <strong>0.4.1</strong>. The current development tree has <strong>1141 passing tests</strong> at 88% coverage with branch measurement enabled. The remaining distance to 1.0 is this phase's CI/CD templates and the two open Phase 03 promises above it, not new scope.</li>
           </ul>
         </li>
         <li class="phase">
